@@ -1,34 +1,40 @@
-export default {
+let navButton = {
   items: [
     {
       name: 'Home',
       url: '/dashboard',
-      icon: 'icon-speedometer'
+      icon: 'icon-speedometer',
+      user: 'common'
     },
     {
       name: 'Vehicle Pass',
       url: '/theme/colors',
       icon: 'icon-drop',
+      user: 'common',
       children: [
         {
           name: 'New Request',
           url: '/base/cards',
           icon: 'icon-puzzle',
+          user: 'user',
         },
         {
           name: 'Request Status',
           url: '/base/dropdowns',
           icon: 'icon-puzzle',
+          user: 'user',
         },
         {
           name: 'Issue Vehicle Pass',
           url: '/base/breadcrumbs',
           icon: 'icon-puzzle',
+          user: 'admin',
         },
         {
           name: 'Renew Request',
           url: '/base/breadcrumbs',
           icon: 'icon-puzzle',
+          user: 'admin',
         },
       ]
     },
@@ -41,16 +47,19 @@ export default {
           name: 'View',
           url: '/base/breadcrumbs',
           icon: 'icon-puzzle',
+          user: 'user',
         },
         {
           name: 'View',
           url: '/base/cards',
           icon: 'icon-puzzle',
+          user: 'admin',
         },
         {
           name: 'Report Violation',
           url: '/base/dropdowns',
           icon: 'icon-puzzle',
+          user: 'admin',
         },
       ]
     },
@@ -63,11 +72,13 @@ export default {
           name: 'Available Slots',
           url: '/base/breadcrumbs',
           icon: 'icon-puzzle',
+          user: 'user',
         },
         {
           name: 'Parking Slots',
           url: '/base/cards',
           icon: 'icon-puzzle',
+          user: 'admin',
         },
       ]
     },
@@ -311,5 +322,16 @@ export default {
       variant: 'danger',
       attributes: { target: '_blank', rel: "noopener" },
     },
-  ],
+  ]
 };
+
+let filterContent = navButton.items.map(child=>{
+  let newmap=child;
+  if(newmap.children !== undefined)
+    newmap.children = newmap.children.filter(elem=>elem.user !== 'user');
+  return newmap
+});
+
+console.log(filterContent)
+
+export default { items : filterContent}
