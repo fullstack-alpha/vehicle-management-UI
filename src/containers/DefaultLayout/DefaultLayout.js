@@ -68,7 +68,7 @@ class DefaultLayout extends Component {
                         )} />
                     ) : (null);
                   })}
-                  <Redirect from="/" to="/dashboard" />
+                  <Route exact path="/" render={() => <Redirect to="/login" />} />
                 </Switch>
               </Suspense>
             </Container>
