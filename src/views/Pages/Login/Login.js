@@ -1,14 +1,35 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardImg,
+  CardGroup,
+  Col,
+  Container,
+  Form,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  Row
+} from "reactstrap";
+import { connect } from "react-redux";
+import PropType from "prop-types";
+import { LoginUserAction } from "../../../UserManagement/LoginUserAction";
 
 class Login extends Component {
 
-  
-loginController = () => {
-  this.props.history.push("dashboard");
+constructor(){
+  super();
+  this.loginController = this.loginController.bind(this);
 }
 
+  loginController() {
+    this.props.LoginUserAction()
+    this.props.history.push("dashboard");
+  };
 
   render() {
     return (
@@ -18,6 +39,11 @@ loginController = () => {
             <Col md="8">
               <CardGroup>
                 <Card className="p-4">
+                  <CardImg
+                    variant="top"
+                    alt="IVehicle"
+                    src="holder.js/100px180"
+                  />
                   <CardBody>
                     <Form onSubmit={this.loginController}>
                       <h1>Login</h1>
@@ -28,7 +54,11 @@ loginController = () => {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="text" placeholder="Username" autoComplete="username" />
+                        <Input
+                          type="text"
+                          placeholder="Username"
+                          autoComplete="username"
+                        />
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
@@ -36,16 +66,21 @@ loginController = () => {
                             <i className="icon-lock"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="password" placeholder="Password" autoComplete="current-password" />
+                        <Input
+                          type="password"
+                          placeholder="Password"
+                          autoComplete="current-password"
+                        />
                       </InputGroup>
                       <Row>
                         <Col xs="6">
-                        {/* <Link to="/dashboard"> */}
-                          <Button type="submit" color="primary" className="px-4">Login</Button>
-                          {/* </Link> */}
-                        </Col>
-                        <Col xs="6" className="text-right">
-                          <Button color="link" className="px-0">Forgot password?</Button>
+                          <Button
+                            type="submit"
+                            color="primary"
+                            className="px-4"
+                          >
+                            Login
+                          </Button>
                         </Col>
                       </Row>
                     </Form>
@@ -72,4 +107,14 @@ loginController = () => {
   }
 }
 
-export default Login;
+Login.propTypes ={
+  LoginUserAction: PropType.func.isRequired,
+  auth: PropType.object.isRequired
+}
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+console.log(mapStateToProps)
+
+export default connect(mapStateToProps, { LoginUserAction })(Login);
