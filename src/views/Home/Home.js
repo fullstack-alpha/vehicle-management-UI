@@ -88,7 +88,6 @@ class Home extends Component {
         <Row>
           <Col xs="12" xl="12">
             <Card>
-
                 <Carousel activeIndex={activeIndex} next={this.next} previous={this.previous}>
                   <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
                   {slides2}
