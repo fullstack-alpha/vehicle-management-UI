@@ -2,6 +2,7 @@ import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import * as router from 'react-router-dom';
 import { Container } from 'reactstrap';
+import Modal from '../../views/LoadingModal/Modal'
 
 import {
   AppAside,
@@ -36,6 +37,7 @@ class DefaultLayout extends Component {
   render() {
     return (
       <div className="app">
+        <Modal/>
         <AppHeader fixed>
           <Suspense  fallback={this.loading()}>
             <DefaultHeader onLogout={e=>this.signOut(e)}/>
@@ -52,7 +54,7 @@ class DefaultLayout extends Component {
             <AppSidebarMinimizer />
           </AppSidebar>
           <main className="main">
-            <AppBreadcrumb appRoutes={routes} router={router}/>
+            {/* <AppBreadcrumb appRoutes={routes} router={router}/> */}
             <Container fluid>
               <Suspense fallback={this.loading()}>
                 <Switch>
