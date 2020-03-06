@@ -3,37 +3,37 @@ let navButton = {
     {
       name: 'Home',
       url: '/dashboard',
-      icon: 'icon-speedometer',
+      icon: 'fa fa-home',
       user: 'common'
     },
     {
       name: 'Vehicle Pass',
       url: '/theme/colors',
-      icon: 'icon-drop',
+      icon: 'fa fa-car',
       user: 'common',
       children: [
         {
           name: 'New Request',
           url: '/base/cards',
-          icon: 'icon-puzzle',
+          icon: 'fa fa-file',
           user: 'user',
         },
         {
           name: 'Request Status',
           url: '/base/dropdowns',
-          icon: 'icon-puzzle',
+          icon: 'fa fa-clock-o',
           user: 'user',
         },
         {
           name: 'Issue Vehicle Pass',
           url: '/base/breadcrumbs',
-          icon: 'icon-puzzle',
+          icon: 'fa fa-certificate',
           user: 'admin',
         },
         {
           name: 'Renew Request',
           url: '/base/breadcrumbs',
-          icon: 'icon-puzzle',
+          icon: 'fa fa-file',
           user: 'admin',
         },
       ]
@@ -41,24 +41,24 @@ let navButton = {
     {
       name: 'Parking Violation',
       url: '/theme/typography',
-      icon: 'icon-pencil',
+      icon: 'fa fa-ban',
       children: [
         {
           name: 'View',
           url: '/base/breadcrumbs',
-          icon: 'icon-puzzle',
+          icon: 'fa fa-television',
           user: 'user',
         },
         {
           name: 'View',
           url: '/base/cards',
-          icon: 'icon-puzzle',
+          icon: 'fa fa-television',
           user: 'admin',
         },
         {
           name: 'Report Violation',
           url: '/base/dropdowns',
-          icon: 'icon-puzzle',
+          icon: 'fa fa-pencil',
           user: 'admin',
         },
       ]
@@ -66,18 +66,18 @@ let navButton = {
     {
       name: 'Vehicle Parking',
       url: '/theme/breadcrumbs',
-      icon: 'icon-pencil',
+      icon: 'fa fa-truck',
       children: [
         {
           name: 'Available Slots',
           url: '/base/breadcrumbs',
-          icon: 'icon-puzzle',
+          icon: 'fa fa-road',
           user: 'user',
         },
         {
           name: 'Parking Slots',
           url: '/base/cards',
-          icon: 'icon-puzzle',
+          icon: 'fa fa-motorcycle',
           user: 'admin',
         },
       ]
@@ -325,13 +325,14 @@ let navButton = {
   ]
 };
 
-let filterContent = navButton.items.map(child=>{
-  let newmap=child;
-  if(newmap.children !== undefined)
-    newmap.children = newmap.children.filter(elem=>elem.user !== 'user');
-  return newmap
-});
+// let filterContent = navButton.items.map(child=>{
+//   let newmap=child;
+//   if(newmap.children !== undefined)
+//     newmap.children = newmap.children.filter(elem=>elem.user !== 'user');
+//   return newmap
+// });
 
-console.log(filterContent)
+// console.log(filterContent)
+let filterContent = navButton.items;
 
 export default { items : filterContent}
