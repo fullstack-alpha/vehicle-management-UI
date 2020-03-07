@@ -18,18 +18,52 @@ import {
 import { connect } from "react-redux";
 import PropType from "prop-types";
 import { LoginUserAction } from "../../../UserManagement/LoginUserAction";
+import Alert from "../../../common/errorAlert";
 
 class Login extends Component {
 
 constructor(){
   super();
+
+  this.state = {
+    userName:"",
+    password:"",
+    errorStatus: 0, 
+    error: "", 
+    message: "",
+    errorFlag: false
+  }
+
   this.loginController = this.loginController.bind(this);
+  this.setvalue = this.setvalue.bind(this);
 }
 
-  loginController() {
-    this.props.LoginUserAction()
-    this.props.history.push("dashboard");
+componentWillReceiveProps(newProps) {    
+  if(newProps.auth.validToken)
+      newProps.history.push("dashboard");
+  else{
+    this.setState({
+      errorStatus: newProps.error.status, 
+      error: newProps.error.error, 
+      message: newProps.error.message,
+      errorFlag: true
+    })
+  }
+}
+
+  loginController(e) {
+    e.preventDefault();
+    this.props.LoginUserAction({
+      employeeId:this.state.userName,
+      password: this.state.password
+    })
   };
+
+  setvalue(event){
+    this.setState({
+      [event.target.id] : event.target.value
+    })
+  }
 
   render() {
     return (
@@ -41,13 +75,14 @@ constructor(){
                 <Card className="p-4">
                   <CardImg
                     variant="top"
-                    alt="IVehicle"
+                    alt="iVehicle"
                     src="holder.js/100px180"
                   />
                   <CardBody>
                     <Form onSubmit={this.loginController}>
                       <h1>Login</h1>
                       <p className="text-muted">Sign In to your account</p>
+                      { this.state.errorFlag ? <Alert message={this.state.message}/> : ''}
                       <InputGroup className="mb-3">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
@@ -58,6 +93,8 @@ constructor(){
                           type="text"
                           placeholder="Username"
                           autoComplete="username"
+                          onChange={this.setvalue}
+                          id="userName"
                         />
                       </InputGroup>
                       <InputGroup className="mb-4">
@@ -70,6 +107,8 @@ constructor(){
                           type="password"
                           placeholder="Password"
                           autoComplete="current-password"
+                          onChange={this.setvalue}
+                          id="password"
                         />
                       </InputGroup>
                       <Row>
@@ -86,18 +125,6 @@ constructor(){
                     </Form>
                   </CardBody>
                 </Card>
-                {/* <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
-                  <CardBody className="text-center">
-                    <div>
-                      <h2>Sign up</h2>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
-                      <Link to="/register">
-                        <Button color="primary" className="mt-3" active tabIndex={-1}>Register Now!</Button>
-                      </Link>
-                    </div>
-                  </CardBody>
-                </Card> */}
               </CardGroup>
             </Col>
           </Row>
@@ -109,11 +136,13 @@ constructor(){
 
 Login.propTypes ={
   LoginUserAction: PropType.func.isRequired,
-  auth: PropType.object.isRequired
+  auth: PropType.object.isRequired,
+  error: PropType.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  error: state.error
 });
 console.log(mapStateToProps)
 
