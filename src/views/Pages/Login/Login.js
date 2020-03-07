@@ -17,7 +17,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import PropType from "prop-types";
-import { LoginUserAction } from "../../../UserManagement/LoginUserAction";
+import { LoginUserAction } from "../../../UserManagement/SecurityActions";
 import Alert from "../../../common/errorAlert";
 
 class Login extends Component {
@@ -49,6 +49,11 @@ componentWillReceiveProps(newProps) {
       errorFlag: true
     })
   }
+}
+
+componentDidMount(){
+  if(this.props.auth.validToken)
+      this.props.history.push("dashboard");
 }
 
   loginController(e) {
