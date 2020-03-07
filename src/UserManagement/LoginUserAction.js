@@ -1,16 +1,25 @@
-import React from 'react'
-import jwt_decoder from 'jwt-decode'
-import Axios from 'axios'
+import React from "react";
+import jwt_decoder from "jwt-decode";
+import Axios from "axios";
 
-export const LoginUserAction= () => {
-
-return function(dispatch){
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-    localStorage.setItem("token",token);
-    console.log(jwt_decoder(token))
+export const LoginUserAction = credential => async dispatch => {
+  console.log("called");
+  let response;
+  try {
+    response = await Axios.post("http://localhost:8080/login", credential);
+    const token = response.data.accessToken;
+    localStorage.setItem("token", token);
     dispatch({
-        type: "SET_USER_SESSION",
-        payload: jwt_decoder(token)
+      type: "SET_USER_SESSION",
+      payload: jwt_decoder(token)
+    });
+  } catch (error) {
+      dispatch({
+          type:"ERROR",
+          payload: error.response.data
+      })
+      dispatch({
+        type:"SET_USER_SESSION"
     })
-}
-}
+  }
+};
