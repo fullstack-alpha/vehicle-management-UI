@@ -1,3 +1,5 @@
+import React from 'react';
+
 let navButton = {
   items: [
     {
@@ -328,11 +330,13 @@ let navButton = {
 // let filterContent = navButton.items.map(child=>{
 //   let newmap=child;
 //   if(newmap.children !== undefined)
-//     newmap.children = newmap.children.filter(elem=>elem.user !== 'user');
+//     newmap.children = newmap.children.filter(elem=>elem.user !== '');
 //   return newmap
 // });
 
-// console.log(filterContent)
-let filterContent = navButton.items;
 
-export default { items : filterContent}
+
+// console.log(filterContent)
+// let filterContent = navButton.items;
+
+export default navButton;

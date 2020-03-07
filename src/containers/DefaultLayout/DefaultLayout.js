@@ -1,8 +1,11 @@
-import React, { Component, Suspense } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import * as router from 'react-router-dom';
-import { Container } from 'reactstrap';
-import Modal from '../../views/LoadingModal/Modal'
+import React, { Component, Suspense } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
+import * as router from "react-router-dom";
+import { Container } from "reactstrap";
+import Modal from "../../views/LoadingModal/Modal";
+import SecureRoute from "../../security/SecureRoutes";
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {
   AppAside,
@@ -14,33 +17,45 @@ import {
   AppSidebarHeader,
   AppSidebarMinimizer,
   AppBreadcrumb2 as AppBreadcrumb,
-  AppSidebarNav2 as AppSidebarNav,
-} from '@coreui/react';
+  AppSidebarNav2 as AppSidebarNav
+} from "@coreui/react";
 // sidebar nav config
-import navigation from '../../_nav';
+import navigation from "../../_nav";
 // routes config
-import routes from '../../routes';
+import routes from "../../routes";
 
-const DefaultAside = React.lazy(() => import('./DefaultAside'));
-const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
-const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
+const DefaultAside = React.lazy(() => import("./DefaultAside"));
+const DefaultFooter = React.lazy(() => import("./DefaultFooter"));
+const DefaultHeader = React.lazy(() => import("./DefaultHeader"));
 
 class DefaultLayout extends Component {
+  loading = () => (
+    <div className="animated fadeIn pt-1 text-center">Loading...</div>
+  );
 
-  loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
-
-  signOut(e) {
-    e.preventDefault()
-    this.props.history.push('/login')
-  }
+  // signOut(e) {
+  //   e.preventDefault();
+  //   this.props.history.push("/login");
+  // }
 
   render() {
+    let filterdList=[];
+    if(this.props.auth.validToken){
+      filterdList = navigation.items.map(child => {
+      let newmap = child;
+      if (newmap.children !== undefined)
+        newmap.children = newmap.children.filter(
+          elem => elem.user !== (this.props.auth.user.scopes[0].authority).toLowerCase()
+        );
+      return newmap;
+    })
+  }
     return (
       <div className="app">
-        <Modal/>
+        <Modal />
         <AppHeader fixed>
-          <Suspense  fallback={this.loading()}>
-            <DefaultHeader onLogout={e=>this.signOut(e)}/>
+          <Suspense fallback={this.loading()}>
+            <DefaultHeader onLogout={e => this.signOut(e)} />
           </Suspense>
         </AppHeader>
         <div className="app-body app-top-padding">
@@ -48,7 +63,11 @@ class DefaultLayout extends Component {
             <AppSidebarHeader />
             <AppSidebarForm />
             <Suspense>
-            <AppSidebarNav navConfig={navigation} {...this.props} router={router}/>
+              <AppSidebarNav
+                navConfig={{items: filterdList}}
+                {...this.props}
+                router={router}
+              />
             </Suspense>
             <AppSidebarFooter />
             <AppSidebarMinimizer />
@@ -60,18 +79,17 @@ class DefaultLayout extends Component {
                 <Switch>
                   {routes.map((route, idx) => {
                     return route.component ? (
-                      <Route
+                      <SecureRoute
                         key={idx}
                         path={route.path}
                         exact={route.exact}
                         name={route.name}
-                        render={props => (
-                          <route.component {...props} />
-                        )} />
-                    ) : (null);
+                        component={route.component}
+                      />
+                    ) : null;
                   })}
-                  <Route exact path="/" render={() => <Redirect to="/login" />} />
                 </Switch>
+                <Route exact path="/" render={() => <Redirect to="/login" />} />
               </Suspense>
             </Container>
           </main>
@@ -91,4 +109,14 @@ class DefaultLayout extends Component {
   }
 }
 
-export default DefaultLayout;
+DefaultLayout.propTypes = {
+  auth: PropTypes.object.isRequired
+}
+
+const mapStateToProps= state => (
+  {
+    auth:state.auth
+  }
+)
+
+export default connect(mapStateToProps)(DefaultLayout);
