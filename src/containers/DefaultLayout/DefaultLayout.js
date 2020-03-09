@@ -2,7 +2,6 @@ import React, { Component, Suspense } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import * as router from "react-router-dom";
 import { Container } from "reactstrap";
-import Modal from "../../views/LoadingModal/Modal";
 import SecureRoute from "../../security/SecureRoutes";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -52,7 +51,6 @@ class DefaultLayout extends Component {
   }
     return (
       <div className="app">
-        <Modal />
         <AppHeader fixed>
           <Suspense fallback={this.loading()}>
             <DefaultHeader onLogout={e => this.signOut(e)} />

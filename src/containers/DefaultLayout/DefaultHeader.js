@@ -4,7 +4,7 @@ import { UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, 
 import PropTypes from 'prop-types';
 
 import { AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
-import logo from '../../assets/img/brand/logo.svg'
+import logo from '../../assets/img/brand/ivehicle.png'
 import sygnet from '../../assets/img/brand/sygnet.svg'
 import { connect } from 'react-redux';
 import { LogoutUser } from '../../UserManagement/SecurityActions'

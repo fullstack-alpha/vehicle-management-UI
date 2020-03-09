@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import logo from '../../../assets/img/brand/ivehicle.png'
 import {
   Button,
   Card,
@@ -78,11 +79,14 @@ componentDidMount(){
             <Col md="8">
               <CardGroup>
                 <Card className="p-4">
+                  <div style={{width:'100px', height:'25px' }}>
                   <CardImg
                     variant="top"
                     alt="iVehicle"
-                    src="holder.js/100px180"
+                    src={logo}
+                    
                   />
+                  </div>
                   <CardBody>
                     <Form onSubmit={this.loginController}>
                       <h1>Login</h1>
