@@ -109,7 +109,7 @@ class DefaultAside extends Component {
                     <img src={'assets/img/avatars/5.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
                   </div>
                   <div className="avatar avatar-xs">
-                    <img src={'assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+                    <img src={'assets/img/avatars/6.png'} className="img-avatar" alt="admin@bootstrapmaster.com" />
                   </div>
                 </div>
               </ListGroupItem>
@@ -136,7 +136,7 @@ class DefaultAside extends Component {
                     <img src={'assets/img/avatars/5.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
                   </div>
                   <div className="avatar avatar-xs">
-                    <img src={'assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+                    <img src={'assets/img/avatars/6.png'} className="img-avatar" alt="admin@bootstrapmaster.com" />
                   </div>
                   <div className="avatar avatar-xs">
                     <img src={'assets/img/avatars/7.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />

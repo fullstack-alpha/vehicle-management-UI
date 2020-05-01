@@ -44,7 +44,7 @@ class DefaultLayout extends Component {
       let newmap = child;
       if (newmap.children !== undefined)
         newmap.children = newmap.children.filter(
-          elem => elem.user !== (this.props.auth.user.scopes[0].authority).toLowerCase()
+          elem => elem.user === (this.props.auth.user.scopes[0].authority).toLowerCase()
         );
       return newmap;
     })
