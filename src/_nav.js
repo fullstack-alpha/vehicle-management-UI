@@ -28,7 +28,7 @@ let navButton = {
         },
         {
           name: 'Issue Vehicle Pass',
-          url: '/base/breadcrumbs',
+          url: '/base/issue-pass',
           icon: 'fa fa-certificate',
           user: 'admin',
         },

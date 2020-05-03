@@ -1,0 +1,13 @@
+.Modal{
+ position: fixed;
+  z-index: 500; /* Sit on top */
+  left: 0;
+  width: 70%;
+  overflow: auto; /* Enable scroll if needed */
+  color: black;
+  margin-left: 20%;
+  margin-top: 20%;
+  transition: all .3s ease-out;
+  box-sizing: border-box;
+  background-color: white;
+}
