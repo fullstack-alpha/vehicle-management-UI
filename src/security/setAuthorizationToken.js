@@ -3,7 +3,8 @@ import Axios from 'axios'
 
 function setAuthorizationToken(token) {
     if(token){
-        Axios.defaults.headers.common["Authorization"] = token;
+        // Axios.defaults.headers.common["Authorization"] = `bearer `;
+        Axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     }
     else
     {

@@ -30,9 +30,10 @@ export const LoginUserAction = credential => async dispatch => {
   } catch (error) {
       dispatch({
           type:"ERROR",
-          payload: error.response.data
+          payload: !error.response ? error : error.response.data
       })
+      return false;
   }
+
+  return true;
 };
-
-

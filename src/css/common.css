@@ -1,0 +1,8 @@
+.btn-primary{
+    background-color: #06AEB0;
+    border: 1px solid #009999;
+}
+.sidebar .nav-link:hover {
+    color: #fff;
+    background: #009999;
+}

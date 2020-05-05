@@ -8,6 +8,8 @@ import setAuthorizationToken from './security/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
 import { LogoutUser } from "./UserManagement/SecurityActions";
 
+import "./css/common.css";
+
 const loading = () => (
   <div className="animated fadeIn pt-3 text-center">Loading...</div>
 );
@@ -39,6 +41,7 @@ const Page404 = React.lazy(() => import("./views/Pages/Page404"));
 const Page500 = React.lazy(() => import("./views/Pages/Page500"));
 
 class App extends Component {
+
   render() {
     return (
       <Provider store={store}>
@@ -82,4 +85,14 @@ class App extends Component {
   }
 }
 
+// App.prototype = {
+//   
+//   employeeDetails: PropType.object.isRequired
+// }
+
+// const mapStateToProps= state => {
+//   employee: state.employeeDetails
+// }
+
+// export default connect(null, {GetEmployeeDetails})(App);
 export default App;
