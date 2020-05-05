@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { format } from "util";
 import logo from '../../../assets/img/brand/ivehicle.png'
 import {
   Button,
@@ -89,7 +90,7 @@ componentDidMount(){
                   </div>
                   <CardBody>
                     <Form onSubmit={this.loginController}>
-                      <h1>Login</h1>
+                      
                       <p className="text-muted">Sign In to your account</p>
                       { this.state.errorFlag ? <Alert message={this.state.message}/> : ''}
                       <InputGroup className="mb-3">
@@ -153,6 +154,5 @@ const mapStateToProps = state => ({
   auth: state.auth,
   error: state.error
 });
-console.log(mapStateToProps)
 
 export default connect(mapStateToProps, { LoginUserAction })(Login);

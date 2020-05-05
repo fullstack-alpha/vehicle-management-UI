@@ -7,7 +7,9 @@ import { AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import logo from '../../assets/img/brand/ivehicle.png'
 import sygnet from '../../assets/img/brand/sygnet.svg'
 import { connect } from 'react-redux';
-import { LogoutUser } from '../../UserManagement/SecurityActions'
+import { LogoutUser } from '../../UserManagement/SecurityActions';
+import Login from '../../views/Pages/Login/Login';
+import { HashRouter, Route, Switch } from "react-router-dom";
 
 const propTypes = {
   children: PropTypes.node,
@@ -20,11 +22,25 @@ class DefaultHeader extends Component {
   constructor(){
     super();
     this.logoutCurrentUser = this.logoutCurrentUser.bind(this);
+
+    this.state = {
+      empName: "",
+      empDesignation: "",
+      empId: ""
+    }
   }
 
   logoutCurrentUser(){
     this.props.LogoutUser();
     window.location.href="/"
+  }
+
+  componentWillReceiveProps(newProp){
+    this.setState({
+      empName: newProp.employeeDetails.employee.employeeName,
+      empDesignation: newProp.employeeDetails.employee.designation,
+      empId: newProp.employeeDetails.employee.employeeId
+    })
   }
 
   render() {
@@ -59,6 +75,9 @@ class DefaultHeader extends Component {
           {/* <NavItem className="d-md-down-none">
             <NavLink to="#" className="nav-link"><i className="icon-location-pin"></i></NavLink>
           </NavItem> */}
+          <NavItem className="px-3">
+            <p>Hi {this.state.empName}</p>
+          </NavItem>
           <UncontrolledDropdown nav direction="down">
             <DropdownToggle nav>
               <img src={'../../assets/img/avatars/6.png'} className="img-avatar" alt="admin@bootstrapmaster.com" />
@@ -70,13 +89,17 @@ class DefaultHeader extends Component {
               <DropdownItem><i className="fa fa-tasks"></i> Tasks<Badge color="danger">42</Badge></DropdownItem>
               <DropdownItem><i className="fa fa-comments"></i> Comments<Badge color="warning">42</Badge></DropdownItem> */}
               {/* <DropdownItem header tag="div" className="text-center"><strong>Settings</strong></DropdownItem> */}
-              <DropdownItem><i className="fa fa-user"></i> Profile</DropdownItem>
+              <DropdownItem><i className="fa fa-user"></i>
+                <Link to="/profile">Profile</Link>
+              </DropdownItem>
               {/* <DropdownItem><i className="fa fa-wrench"></i> Settings</DropdownItem> */}
               {/* <DropdownItem><i className="fa fa-usd"></i> Payments<Badge color="secondary">42</Badge></DropdownItem> */}
               {/* <DropdownItem><i className="fa fa-file"></i> Projects<Badge color="primary">42</Badge></DropdownItem> */}
               {/* <DropdownItem divider /> */}
               {/* <DropdownItem><i className="fa fa-shield"></i> Lock Account</DropdownItem> */}
-              <DropdownItem onClick={this.logoutCurrentUser}><i className="fa fa-lock"></i> Logout</DropdownItem>
+              <DropdownItem><i className="fa fa-lock"></i> 
+                <Link onClick={this.logoutCurrentUser}>Logout</Link>
+              </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>
@@ -88,7 +111,14 @@ class DefaultHeader extends Component {
 }
 
 DefaultHeader.propTypes = {
-  LogoutUser: PropTypes.func.isRequired
+  LogoutUser: PropTypes.func.isRequired,
+  employeeDetails: PropTypes.object.isRequired
 }
 
-export default connect(null, { LogoutUser })(DefaultHeader);
+const mapStateToProps = state =>(
+  {
+    employeeDetails: state.employeeDetails
+  }
+)
+
+export default connect(mapStateToProps, { LogoutUser })(DefaultHeader);
