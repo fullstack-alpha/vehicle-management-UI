@@ -6,53 +6,65 @@ import Modal from './Modal/Modal'
 
 class IssuePass extends Component {
 
+    size = 5;
     state = {
         vehicleDetails: [],
         selectedVehicleDetails: null,
-        viewButtonClicked: false
+        viewButtonClicked: false,
+        totalPages: 0,
+        page: 0,
+        clickedPage: 1
     }
 
     componentDidMount() {
+        this.callGetEndpoint(this.state.page, this.size)
+    }
 
-        axios.get('http://localhost:8080/user/vehicleDtls/getall')
+    callGetEndpoint(page, size) {
+        let url = 'http://localhost:8080/admin/vehicleDtls/getAll';
+        url = url.concat('?page=' + page + '&size=' + size)
+        axios.get(url)
             .then((response) => {
                 this.setState({
-                    vehicleDetails: response.data
+                    vehicleDetails: response.data.content,
+                    totalPages: response.data.totalPages
                 })
             });
     }
 
-    // componentDidUpdate() {
+    // componentDidUpdate(prevState,nextState) {
 
+    //     if (prevState.isUpdatedRequestCalled!==nextState.isUpdatedRequestCalled) { }
     //     axios.get('http://localhost:8080/user/vehicleDtls/getall')
     //         .then((response) => {
     //             this.setState({
-    //                 vehicleDetails: response.data
+    //                 vehicleDetails: response.data,
+    //                 isUpdatedRequestCalled:false
     //             })
     //         });
     // }
 
+
     callUpdateHandler = (event) => {
-        console.log(event.target.value);
+
         let VehicleDtls = {
             requestStatus: event.target.value
         }
-        var id = this.state.selectedVehicleDetails.id.toString();
+        var id = this.state.selectedVehicleDetails.id;
         let url = 'http://localhost:8080/admin/vehicleDtls/update/'.concat(id);
 
 
         axios.put(url, VehicleDtls)
             .then((response) => {
                 this.setState({
-                    viewButtonClicked: false
-                })
-            }).then((response) => {
-                this.setState({
-                    vehicleDetails: response.data
+                    viewButtonClicked: false,
+                    // isUpdatedRequestCalled:true
                 })
             });
 
-           
+
+
+
     }
 
     clickViewDetails = (event) => {
@@ -76,6 +88,15 @@ class IssuePass extends Component {
         return element;
     }
 
+    paginationLinkClickHandler = (event) => {
+        this.callGetEndpoint(event.target.value, this.size);
+        this.setState({
+            clickedPage: parseInt(event.target.value) + 1
+        }
+        )
+
+    }
+
 
 
     render() {
@@ -94,6 +115,26 @@ class IssuePass extends Component {
             })
         }
 
+        let paginationItem = null;
+
+        if (this.state.totalPages !== 0) {
+            let arr = [];
+            {
+            for (var i = 1; i <= this.state.totalPages; i++) {
+               arr.push(i);
+            }
+        }
+
+            paginationItem = arr.map(i =>
+                this.state.clickedPage == i ? <PaginationItem active>
+                    <PaginationLink tag="button" onClick={this.paginationLinkClickHandler} value={i - 1} >{i}</PaginationLink>
+                </PaginationItem> :
+                    <PaginationItem>
+                        <PaginationLink tag="button" onClick={this.paginationLinkClickHandler} value={i - 1} >{i}</PaginationLink>
+                    </PaginationItem>)
+        }
+
+
 
 
         return (
@@ -106,7 +147,7 @@ class IssuePass extends Component {
                     <Col>
                         <Card>
                             <CardHeader>
-                                <i className="fa fa-align-justify"></i> Simple Table
+                                <i className="fa fa-align-justify"></i> Issue Vehicle Pass
                             </CardHeader>
                             <CardBody>
 
@@ -127,20 +168,10 @@ class IssuePass extends Component {
                                 </Table>
                                 <Pagination>
                                     <PaginationItem>
-                                        <PaginationLink previous tag="button"></PaginationLink>
+                                        <PaginationLink previous tag="button" value={this.state.clickedPage - 1} onClick={this.paginationLinkClickHandler}></PaginationLink>
                                     </PaginationItem>
-                                    <PaginationItem active>
-                                        <PaginationLink tag="button">1</PaginationLink>
-                                    </PaginationItem>
-                                    <PaginationItem>
-                                        <PaginationLink tag="button">2</PaginationLink>
-                                    </PaginationItem>
-                                    <PaginationItem>
-                                        <PaginationLink tag="button">3</PaginationLink>
-                                    </PaginationItem>
-                                    <PaginationItem>
-                                        <PaginationLink tag="button">4</PaginationLink>
-                                    </PaginationItem>
+                                    {paginationItem}
+                                    
                                     <PaginationItem>
                                         <PaginationLink next tag="button"></PaginationLink>
                                     </PaginationItem>
