@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {
+  Alert,
   Badge,
   Card,
   CardBody,
@@ -22,8 +23,8 @@ class RequestStatus extends Component {
     super(props);
 
     this.state = {
-      requestStatus:"",
-      regNo:""
+      passAvailable:false,
+      passInfo:[]
     };
   }
 
@@ -33,15 +34,13 @@ class RequestStatus extends Component {
         .then(response => {
           console.log(response.data);
           this.setState({
-            requestStatus: response.data.requestStatus,
-            regNo:response.data.vehicleNumber
+            passInfo:response.data,
+            passAvailable:true
           })
         })
         .catch(error => {
           console.log(error);
         });
-   //console.log("Request Status of the employee EmployeeID " +this.state.requestStatus)
-
  }
 
   render() {
@@ -49,13 +48,12 @@ class RequestStatus extends Component {
       <div className="animated fadeIn">
         <Row>
           <Col>
-            <h3>Check{this.state.requestStatus}</h3>
-
             <Card>
               <CardHeader>
                 <i className="fa fa-align-justify"></i> Pass Status
               </CardHeader>
               <CardBody>
+                {this.state.passInfo.length>0 ?
                 <Table hover bordered striped responsive size="sm">
                   <thead>
                   <tr>
@@ -65,17 +63,23 @@ class RequestStatus extends Component {
                     <th>Request Status</th>
                   </tr>
                   </thead>
-                  <tbody>
-                  <tr>
-                    <td>{this.props.employeeDetails.employee.employeeName}</td>
-                    <td>{this.props.employeeDetails.employee.employeeId}</td>
-                    <td>{this.state.regNo}</td>
+                  {this.state.passInfo.map(status =>
+                      <tbody>
+                      <tr>
+                      <td>{status.employeeName}</td>
+                    <td>{status.employeeId}</td>
+                    <td>{status.vehicleNumber}</td>
                     <td>
-                      <Badge color="secondary">{this.state.requestStatus}</Badge>
+                    <Badge color="secondary">{status.requestStatus}</Badge>
                     </td>
-                  </tr>
-                  </tbody>
+                    </tr>
+                    </tbody>)}
                 </Table>
+                    :
+                    <Alert color="warning">
+                      {/*eslint-disable-next-line*/}
+                      You dont've any request in queue <a href="/base/newRequest" className="alert-link">Raise a request</a>.
+                    </Alert> }
               </CardBody>
             </Card>
           </Col>

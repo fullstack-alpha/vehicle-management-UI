@@ -163,6 +163,10 @@ class NewRequest extends Component {
                             <h4 className="alert-heading">New Vehicle Pass Request Created!</h4>
                             <p>
                               Aww yeah, you've successfully raised a request to Admin team for new vehicle pass request. Once the vehicle pass request is accepted by admin team you will recieve notification to your emaild <span style={{color:'red'}}>{this.state.emailId}</span>
+                              <hr />
+                              <p className="mb-0">
+                                <a href="/base/newRequest" className="alert-link">Raise a another request here..</a>.
+                              </p>
                             </p>
                           </Alert>
                         </CardBody>
