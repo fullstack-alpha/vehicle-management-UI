@@ -16,13 +16,13 @@ let navButton = {
       children: [
         {
           name: 'New Request',
-          url: '/base/cards',
+          url: '/base/newRequest',
           icon: 'fa fa-file',
           user: 'user',
         },
         {
           name: 'Request Status',
-          url: '/base/dropdowns',
+          url: '/base/requestStatus',
           icon: 'fa fa-clock-o',
           user: 'user',
         },

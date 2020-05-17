@@ -1,0 +1,6 @@
+{
+  "name": "RequestStatus",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./RequestStatus.js"
+}
