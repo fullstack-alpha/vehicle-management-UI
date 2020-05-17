@@ -38,6 +38,8 @@ const Users = React.lazy(() => import('./views/Users/Users'));
 const User = React.lazy(() => import('./views/Users/User'));
 const Profile = React.lazy(() => import('./views/Users/Profile'));
 const IssuePass = React.lazy(() => import('./containers/IssuePass/IssuePass'));
+const RequestStatus = React.lazy(() => import('./views/Base/RequestStatus'));
+const NewRequest = React.lazy(() => import('./views/Base/NewRequest'));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
@@ -83,7 +85,10 @@ const routes = [
   { path: '/users', exact: true,  name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
   { path: '/profile', exact:true, name: 'Profile', component: Profile },
-  { path: '/base/issue-pass', exact: true, name: 'Issue Vehicle Pass', component: IssuePass }
+  { path: '/base/issue-pass', exact: true, name: 'Issue Vehicle Pass', component: IssuePass },
+  { path: '/base/newRequest', name: 'New Request', component: NewRequest },
+  { path: '/base/requestStatus', name: 'Request Status', component: RequestStatus },
+
 ];
 
 export default routes;
