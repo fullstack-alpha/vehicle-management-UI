@@ -701,7 +701,7 @@ class FontAwesome extends Component {
               </Col>
 
               <Col xs="6" sm="4" md="3" lg="2">
-                <i className="fa fa-dashboard fa-lg mt-4"></i><br />dashboard <span className="text-muted">(alias)</span>
+                <i className="fa fa-dashboard fa-lg mt-4"></i><br />home <span className="text-muted">(alias)</span>
               </Col>
 
               <Col xs="6" sm="4" md="3" lg="2">

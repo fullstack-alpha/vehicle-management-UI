@@ -1,14 +1,15 @@
 import React from 'react'
-import Axios from 'axios'
+import axios from 'axios'
 
 function setAuthorizationToken(token) {
     if(token){
-        // Axios.defaults.headers.common["Authorization"] = `bearer `;
-        Axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+        // Axios.defaults.headers.common["Authorization"] = `bearer ${token}`;
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+        // axios.defaults.headers.common['Authentication'] = `Bearer ${ token }`
     }
     else
     {
-        delete Axios.defaults.headers.common["Authorization"];
+        delete axios.defaults.headers.common["Authorization"];
     }
 }
 
