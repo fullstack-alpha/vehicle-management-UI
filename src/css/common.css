@@ -6,3 +6,72 @@
     color: #fff;
     background: #009999;
 }
+
+.emp-name{
+    padding-top:15px 
+}
+
+.booked>button{
+    background-color: #036666;
+    color: white;
+}
+
+.booked>button:hover{
+    background-color: #036666;
+    color: white;
+}
+
+.up-down{
+    display: block;
+}
+
+.availability-icon {
+    height: 20px;
+    width: 20px;
+}
+
+.availability{
+    display: flex;
+}
+
+.availability-text {
+    padding-right: 10px;
+    padding-left: 10px
+}
+
+.available{
+    background-color: #fff;
+    border:  1px solid black;
+}
+
+.un-available {
+    background-color: #036666;
+}
+
+.header-row {
+    padding-bottom: 50px
+}
+
+.parking>li {
+    padding: 0px 2px 10px 2px !important;
+    width: 60px !important;
+    max-width: 250px !important;
+}
+
+.parking {
+    display: flex !important;
+    flex-wrap: wrap !important;
+}
+
+.parking-zone {
+    width: 100%;
+    max-width: 100%;
+}
+
+.navbar{
+    padding: 0 !important
+}
+
+.center-align{
+    text-align:  center;
+}

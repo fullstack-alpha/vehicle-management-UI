@@ -15,6 +15,8 @@ class Profile extends Component {
     }
 
     componentDidMount(){
+        if(!this.props.employeeDetails.employee)
+            return
         this.setState({
             empName: this.props.employeeDetails.employee.employeeName,
             empDesignation: this.props.employeeDetails.employee.designation,
@@ -23,6 +25,8 @@ class Profile extends Component {
     }
 
     componentWillReceiveProps(newProp){
+        if(!newProp.employeeDetails.employee)
+            return
         this.setState({
             empName: newProp.employeeDetails.employee.employeeName,
             empDesignation: newProp.employeeDetails.employee.designation,
@@ -37,6 +41,10 @@ class Profile extends Component {
           };
 
           let {empName, empDesignation, empId} = this.state;
+
+          if(!empName){
+              return '<span>Loading ...</span>'
+          }
 
         return (
             <Jumbotron>

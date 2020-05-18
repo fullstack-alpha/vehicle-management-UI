@@ -23,7 +23,7 @@ const ButtonDropdowns = React.lazy(() => import('./views/Buttons/ButtonDropdowns
 const ButtonGroups = React.lazy(() => import('./views/Buttons/ButtonGroups'));
 const Buttons = React.lazy(() => import('./views/Buttons/Buttons'));
 const Charts = React.lazy(() => import('./views/Charts'));
-const Dashboard = React.lazy(() => import('./views/Dashboard'));
+// const Dashboard = React.lazy(() => import('./views/Dashboard'));
 const CoreUIIcons = React.lazy(() => import('./views/Icons/CoreUIIcons'));
 const Flags = React.lazy(() => import('./views/Icons/Flags'));
 const FontAwesome = React.lazy(() => import('./views/Icons/FontAwesome'));
@@ -34,17 +34,18 @@ const Modals = React.lazy(() => import('./views/Notifications/Modals'));
 const Colors = React.lazy(() => import('./views/Theme/Colors'));
 const Typography = React.lazy(() => import('./views/Theme/Typography'));
 const Widgets = React.lazy(() => import('./views/Widgets/Widgets'));
-const Users = React.lazy(() => import('./views/Users/Users'));
-const User = React.lazy(() => import('./views/Users/User'));
-const Profile = React.lazy(() => import('./views/Users/Profile'));
+const Users = React.lazy(() => import('./containers/User/Users'));
+const User = React.lazy(() => import('./containers/User/User'));
+const Profile = React.lazy(() => import('./containers/User/Profile'));
 const IssuePass = React.lazy(() => import('./containers/IssuePass/IssuePass'));
 const RequestStatus = React.lazy(() => import('./views/Base/RequestStatus'));
 const NewRequest = React.lazy(() => import('./views/Base/NewRequest'));
+const ParkingSlots =React.lazy(() => import('./containers/VehicleParking/ParkingSlots'));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Home', component: Home },
+  { path: '/home', name: 'Home', component: Home },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },
@@ -85,6 +86,7 @@ const routes = [
   { path: '/users', exact: true,  name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
   { path: '/profile', exact:true, name: 'Profile', component: Profile },
+  { path: '/parking/parkingSlots', exact: true, name: 'Parking Slots', component: ParkingSlots}
   { path: '/base/issue-pass', exact: true, name: 'Issue Vehicle Pass', component: IssuePass },
   { path: '/base/newRequest', name: 'New Request', component: NewRequest },
   { path: '/base/requestStatus', name: 'Request Status', component: RequestStatus },

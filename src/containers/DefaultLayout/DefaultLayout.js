@@ -5,8 +5,7 @@ import { Container } from "reactstrap";
 import SecureRoute from "../../security/SecureRoutes";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import { GetEmployeeDetails } from "../../UserManagement/EmployeeAction";
-
+import GetEmployeeDetails from "../../Actions/UserManagement/EmployeeAction";
 import {
   AppAside,
   AppFooter,

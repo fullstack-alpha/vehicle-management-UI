@@ -6,9 +6,9 @@ import {Provider} from "react-redux";
 import { store } from "./store";
 import setAuthorizationToken from './security/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
-import { LogoutUser } from "./UserManagement/SecurityActions";
+import { LogoutUser } from "./Actions/UserManagement/SecurityActions";
 
-import "./css/common.css";
+
 
 const loading = () => (
   <div className="animated fadeIn pt-3 text-center">Loading...</div>
@@ -27,7 +27,7 @@ if(jwtToken){
   const currentTimeinMillies = Date.now()/1000
   if(decode.exp < currentTimeinMillies){
     store.dispatch(LogoutUser())
-    window.location.href("/")
+    this.history.push("/login");
   }
 }
 
@@ -35,7 +35,7 @@ if(jwtToken){
 const DefaultLayout = React.lazy(() => import("./containers/DefaultLayout"));
 
 // Pages
-const Login = React.lazy(() => import("./views/Pages/Login"));
+const Login = React.lazy(() => import("./containers/Pages/Login/Login"));
 const Register = React.lazy(() => import("./views/Pages/Register"));
 const Page404 = React.lazy(() => import("./views/Pages/Page404"));
 const Page500 = React.lazy(() => import("./views/Pages/Page500"));
