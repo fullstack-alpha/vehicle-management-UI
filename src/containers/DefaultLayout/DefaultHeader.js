@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 
 import { AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import logo from '../../assets/img/brand/ivehicle.png'
-import sygnet from '../../assets/img/brand/sygnet.svg'
+import sygnet from '../../assets/img/brand/i.png'
 import { connect } from 'react-redux';
-import { LogoutUser } from '../../UserManagement/SecurityActions';
-import Login from '../../views/Pages/Login/Login';
+import Login from '../Pages/Login/Login';
 import { HashRouter, Route, Switch } from "react-router-dom";
+import { LogoutUser } from '../../Actions/UserManagement/SecurityActions';
 
 const propTypes = {
   children: PropTypes.node,
@@ -26,7 +26,8 @@ class DefaultHeader extends Component {
     this.state = {
       empName: "",
       empDesignation: "",
-      empId: ""
+      empId: "",
+      loading: false
     }
   }
 
@@ -48,6 +49,11 @@ class DefaultHeader extends Component {
     // eslint-disable-next-line
     const { children, ...attributes } = this.props;
 
+    if(!this.state.empName)
+    {
+      return <span>Loading ...</span>
+    }
+
     return (
       <React.Fragment>
         <AppSidebarToggler className="d-lg-none" display="md" mobile />
@@ -59,7 +65,7 @@ class DefaultHeader extends Component {
 
         <Nav className="d-md-down-none" navbar>
           <NavItem className="px-3">
-            <NavLink to="/dashboard" className="nav-link" >Home</NavLink>
+            <NavLink to="/home" className="nav-link" >Home</NavLink>
           </NavItem>
           <NavItem className="px-3">
             <Link to="/users" className="nav-link">Users</Link>
@@ -75,12 +81,12 @@ class DefaultHeader extends Component {
           {/* <NavItem className="d-md-down-none">
             <NavLink to="#" className="nav-link"><i className="icon-location-pin"></i></NavLink>
           </NavItem> */}
-          <NavItem className="px-3">
+          <NavItem className="px-3 emp-name">
             <p>Hi {this.state.empName}</p>
           </NavItem>
           <UncontrolledDropdown nav direction="down">
             <DropdownToggle nav>
-              <img src={'../../assets/img/avatars/6.png'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+              <img src={'../../assets/img/avatars/6.png'} className="img-avatar" alt={this.state.empId} />
             </DropdownToggle>
             <DropdownMenu right>
               {/* <DropdownItem header tag="div" className="text-center"><strong>Account</strong></DropdownItem>

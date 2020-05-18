@@ -1,7 +1,7 @@
 import React from "react";
 import jwt_decoder from "jwt-decode";
 import Axios from "axios";
-import setAuthorizationToken from '../security/setAuthorizationToken';
+import setAuthorizationToken from '../../security/setAuthorizationToken';
 
 export const LogoutUser = () => dispatch =>{
   localStorage.removeItem("token");
@@ -13,8 +13,6 @@ export const LogoutUser = () => dispatch =>{
 }
 
 export const LoginUserAction = credential => async dispatch => {
-
-// admin token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJzY29wZXMiOlt7ImF1dGhvcml0eSI6IkFETUlOIn1dfQ.5c7vqljKdhopCMF8XGJ399sdKzTjC863YAnyvt_vTSM
 
   let response;
   try {
