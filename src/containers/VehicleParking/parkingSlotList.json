@@ -1,0 +1,180 @@
+{
+    "East":[
+        {
+            "slotName" : "P-1",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": true,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-2",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": true,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-3",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": true,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-4",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": false,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-5",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": true,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-6",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": false,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-7",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": true,
+            "zone": "east"
+        },{
+            "slotName" : "P-1",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": true,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-2",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": true,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-3",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": true,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-4",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": false,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-5",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": true,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-6",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": false,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-7",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": true,
+            "zone": "east"
+        },{
+            "slotName" : "P-1",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": true,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-2",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": true,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-3",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": true,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-4",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": false,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-5",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": true,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-6",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": false,
+            "zone": "east"
+        },
+        {
+            "slotName" : "P-7",
+            "slotIcon" : "fa fa-bicycle",
+            "booked": true,
+            "zone": "east"
+        }
+    ],
+    "West":[
+        {
+            "slotName" : "P-1",
+            "slotIcon" : "fa fa-automobile",
+            "booked": false,
+            "zone": "west"
+        },
+        {
+            "slotName" : "P-2",
+            "slotIcon" : "fa fa-automobile",
+            "booked": true,
+            "zone": "west"
+        },
+        {
+            "slotName" : "P-3",
+            "slotIcon" : "fa fa-automobile",
+            "booked": false,
+            "zone": "west"
+        },
+        {
+            "slotName" : "P-4",
+            "slotIcon" : "fa fa-automobile",
+            "booked": false,
+            "zone": "west"
+        },
+        {
+            "slotName" : "P-5",
+            "slotIcon" : "fa fa-automobile",
+            "booked": true,
+            "zone": "west"
+        }
+    ],
+    "North":[
+        {
+            "slotName" : "P-1",
+            "slotIcon" : "fa fa-automobile",
+            "booked": false,
+            "zone": "nort"
+        },
+        {
+            "slotName" : "P-2",
+            "slotIcon" : "fa fa-automobile",
+            "booked": false,
+            "zone": "nort"
+        },
+        {
+            "slotName" : "P-3",
+            "slotIcon" : "fa fa-automobile",
+            "booked": false,
+            "zone": "nort"
+        }
+    ]
+}

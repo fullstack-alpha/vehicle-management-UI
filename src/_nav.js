@@ -4,7 +4,7 @@ let navButton = {
   items: [
     {
       name: 'Home',
-      url: '/dashboard',
+      url: '/home',
       icon: 'fa fa-home',
       user: 'common'
     },
@@ -72,13 +72,13 @@ let navButton = {
       children: [
         {
           name: 'Available Slots',
-          url: '/base/breadcrumbs',
+          url: '/parking/parkingSlots',
           icon: 'fa fa-road',
           user: 'user',
         },
         {
           name: 'Parking Slots',
-          url: '/base/cards',
+          url: '/parking/parkingSlots',
           icon: 'fa fa-motorcycle',
           user: 'admin',
         },
