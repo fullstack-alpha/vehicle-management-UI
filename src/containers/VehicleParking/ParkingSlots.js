@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row } from 'react-bootstrap';
-import { Modal, ModalBody, ModalFooter, ModalHeader, Button, CardBody, Card, Col, CardHeader, FormGroup, Label, Input } from 'reactstrap';
+import { Container, Row, Button } from 'react-bootstrap';
+import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import data from './parkingSlotList.json';
 import { useSelector, useDispatch } from 'react-redux';
 import { GetAllParkingSlots } from '../../Actions/ParkingSlotAction';
@@ -91,7 +91,7 @@ export default function ParkingSlots() {
                                     </Col>
                                 </Row>
                             </div>
-                            
+
                         </CardBody>
                         </Card>
                     </Col>
@@ -140,7 +140,7 @@ export default function ParkingSlots() {
                                 </Col>
                             </Row>
                         </div>
-                        
+
                     </CardBody>
                     </Card>
                 </Col>
@@ -172,7 +172,7 @@ export default function ParkingSlots() {
                     "booked": false
                 }
             )
-        }  
+        }
         saveZone({
             "zoneID": zoneId,
             "parkingSlots": totalParkingSlots
@@ -202,7 +202,7 @@ export default function ParkingSlots() {
                     "booked": false
                 }
             )
-        }  
+        }
         saveZone({
             "zoneName": zoneName,
             "parkingSlots": totalParkingSlots
@@ -238,8 +238,8 @@ export default function ParkingSlots() {
             parkingSlots.parkingSlots.map(parkingZone => (
                         <Row>
                             <nav key={parkingZone.zoneID} class="parking-zone" aria-label="pagination">
-                                <h6>{parkingZone.zoneName} Zone 
-                                {isAdmin() ? 
+                                <h6>{parkingZone.zoneName} Zone
+                                {isAdmin() ?
                                 <span style={{"padding-left":"10px"}}>
                                     <Button onClick={()=>{setEditZone(!editZone); setClickedZone(parkingZone); setZoneId(parkingZone.zoneID)}}>
                                         <i class="fa fa-edit"></i>
@@ -274,9 +274,9 @@ export default function ParkingSlots() {
                 <div class="availability">
                     <Col xs="12" sm="6" className="avail-grp">
                         <h5 class="availability"><span class="availability-text">Available </span><div class="availability-icon available"></div></h5>
-                        <h5 class="availability"><span class="availability-text">Unavailable</span><div class="availability-icon un-available"></div></h5>                        
+                        <h5 class="availability"><span class="availability-text">Unavailable</span><div class="availability-icon un-available"></div></h5>
                     </Col>
-                    { isAdmin() ? 
+                    { isAdmin() ?
                     <Col xs="12" sm="6" className="add-zone">
                         <Button color="success" onClick={()=>setAddZone(!addZone)}><i class="fa fa-plus"></i> Zone</Button>
                     </Col> : ''}
