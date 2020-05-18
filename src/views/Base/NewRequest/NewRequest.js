@@ -122,14 +122,15 @@ class NewRequest extends Component {
                       </FormGroup>
                       <FormGroup>
                         <Label htmlFor="email-input">Email ID</Label>
-                        <Input type="email" id="email-input" name="emailId" placeholder="Enter IBS Email Id" autoComplete="email" value={this.state.emailId} onChange={this.handleChange}/>
+                        <Input type="email" id="email-input" required="required" name="emailId" placeholder="Enter IBS Email Id" autoComplete="email" value={this.state.emailId} onChange={this.handleChange}/>
                         <FormText className="help-block">Please enter your email</FormText>
                       </FormGroup>
                       <FormGroup row className="my-0">
                         <Col xs="8">
                           <FormGroup>
                             <Label htmlFor="vehicleType">Vehicle Type</Label>
-                            <Input type="select" name="vehicleType" id="vehicleType" value={this.state.vehicleType} onChange={this.handleChange}>
+                            <Input type="select" required name="vehicleType" id="vehicleType" value={this.state.vehicleType} onChange={this.handleChange}>
+                              <option></option>
                               <option>2-Wheeler</option>
                               <option>Car</option>
                               <option>SUV</option>
@@ -139,7 +140,7 @@ class NewRequest extends Component {
                         <Col xs="4">
                           <FormGroup>
                             <Label htmlFor="vehicleNumber">Vehicle Number</Label>
-                            <Input type="text" name="vehicleNumber" id="vehicleNumber" placeholder="VehicleNumber" value={this.state.vehicleNumber} onChange={this.handleChange}/>
+                            <Input type="text" required="required" name="vehicleNumber" id="vehicleNumber" placeholder="VehicleNumber" value={this.state.vehicleNumber} onChange={this.handleChange}/>
                           </FormGroup>
                         </Col>
                       </FormGroup>

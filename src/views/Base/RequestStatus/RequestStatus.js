@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PopUpInfo from "./PopUpInfo";
+import PopUpDelete from "./PopUpDelete"
+
 import {
   Alert,
   Badge,
@@ -61,6 +64,7 @@ class RequestStatus extends Component {
                     <th>EmployeeID</th>
                     <th>Vehicle Number</th>
                     <th>Request Status</th>
+                     <th>Operations</th>
                   </tr>
                   </thead>
                   {this.state.passInfo.map(status =>
@@ -72,6 +76,11 @@ class RequestStatus extends Component {
                     <td>
                     <Badge color="secondary">{status.requestStatus}</Badge>
                     </td>
+                          {/*approved, rejected, pending, expired*/}
+                          <td>
+                              {status.requestStatus==="Pending" || status.requestStatus==="Rejected" ?<PopUpDelete id={status.id}/>:<PopUpInfo id={status.id} employeeName={status.employeeName}
+                              employeeId={status.employeeId} vehicleNumber={status.vehicleNumber} vehicleType={status.vehicleType} emailId={status.emailId} requestStatus={"Pending"}/>}
+                          </td>
                     </tr>
                     </tbody>)}
                 </Table>
