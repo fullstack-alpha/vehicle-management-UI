@@ -41,6 +41,7 @@ const IssuePass = React.lazy(() => import('./containers/IssuePass/IssuePass'));
 const RequestStatus = React.lazy(() => import('./views/Base/RequestStatus'));
 const NewRequest = React.lazy(() => import('./views/Base/NewRequest'));
 const ViolationDetailsAG = React.lazy(() => import('./containers/ViolationDetails/ViolationDetailsAG'));
+const ParkingViolation = React.lazy(() => import('./views/Base/ParkingViolation'));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
@@ -89,7 +90,8 @@ const routes = [
   { path: '/base/issue-pass', exact: true, name: 'Issue Vehicle Pass', component: IssuePass },
   { path: '/base/newRequest', name: 'New Request', component: NewRequest },
   { path: '/base/requestStatus', name: 'Request Status', component: RequestStatus },
-  { path: '/base/view-violationdetails', exact: true, name: 'View Violation Details', component: ViolationDetailsAG }
+  { path: '/base/view-violationdetails', exact: true, name: 'View Violation Details', component: ViolationDetailsAG },
+  { path: '/base/ParkingViolation', exact: true, name: 'View User Violation Details', component: ParkingViolation }
 ];
 
 export default routes;

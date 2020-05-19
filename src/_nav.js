@@ -47,7 +47,7 @@ let navButton = {
       children: [
         {
           name: 'View',
-          url: '/base/breadcrumbs',
+          url: '/base/ParkingViolation',
           icon: 'fa fa-television',
           user: 'user',
         },
