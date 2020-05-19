@@ -77,10 +77,18 @@ class RequestStatus extends Component {
                     <Badge color="secondary">{status.requestStatus}</Badge>
                     </td>
                           {/*approved, rejected, pending, expired*/}
-                          <td>
-                              {status.requestStatus==="Pending" || status.requestStatus==="Rejected" ?<PopUpDelete id={status.id}/>:<PopUpInfo id={status.id} employeeName={status.employeeName}
-                              employeeId={status.employeeId} vehicleNumber={status.vehicleNumber} vehicleType={status.vehicleType} emailId={status.emailId} requestStatus={"Pending"}/>}
-                          </td>
+                          {status.requestStatus === "Approved" ?  <Badge color="info">
+                                  You will be receiving your pass shortly
+                              </Badge>:
+                              <td>
+                                  {status.requestStatus === "Pending" || status.requestStatus === "Rejected" ?
+                                      <PopUpDelete id={status.id}/> :
+                                      <PopUpInfo id={status.id} employeeName={status.employeeName}
+                                                 employeeId={status.employeeId} vehicleNumber={status.vehicleNumber}
+                                                 vehicleType={status.vehicleType} emailId={status.emailId}
+                                                 requestStatus={"Pending"}/>}
+                              </td>
+                          }
                     </tr>
                     </tbody>)}
                 </Table>

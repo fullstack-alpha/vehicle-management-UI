@@ -14,8 +14,13 @@ class PopUpDelete extends Component {
     this.toggle = this.toggle.bind(this);
     this.toggleDanger = this.toggleDanger.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.redirect = this.redirect.bind(this);
 
   }
+
+   redirect() {
+      window.location.href='/base/requestStatus';
+   }
 
   toggle() {
     this.setState({
@@ -32,7 +37,7 @@ class PopUpDelete extends Component {
   handleClick() {
        try {
             axios.delete(`http://localhost:8080/user/vehicleDtls/delete/${this.props.id}`)
-            .then(res => res.data);
+            .then(this.redirect);
           }catch (err) {
             console.log("Error while deleting vehicle details "+err);
           }
