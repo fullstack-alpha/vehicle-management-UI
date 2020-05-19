@@ -53,7 +53,7 @@ let navButton = {
         },
         {
           name: 'View',
-          url: '/base/cards',
+          url: '/base/view-violationdetails',
           icon: 'fa fa-television',
           user: 'admin',
         },
