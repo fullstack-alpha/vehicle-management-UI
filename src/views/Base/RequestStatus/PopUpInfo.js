@@ -14,7 +14,12 @@ class PopUpInfo extends Component {
         this.toggle = this.toggle.bind(this);
         this.toggleInfo = this.toggleInfo.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.redirect = this.redirect.bind(this);
 
+    }
+
+    redirect(){
+        window.location.href='/base/requestStatus';
     }
 
     toggle() {
@@ -40,7 +45,7 @@ class PopUpInfo extends Component {
                 vehicleNumber,
                 id,
                 requestStatus
-            }) .then(response => console.log(response)).catch(err => { console.log(err) });
+            }) .then(this.redirect).catch(err => { console.log(err) });
         }catch (err) {
             console.log("Error while updating vehicle details for renewal "+err);
         }
