@@ -5,6 +5,8 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { Badge, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
 import axios from 'axios';
+import DeleteButtonRenderer from './DeleteButtonRenderer.js';
+
 //import PassRequestSummary from './PassRequestSummary/PassRequestSummary';
 //import Modal from './Modal/Modal'
 
@@ -13,7 +15,10 @@ class ViolationDetailsAG extends Component {
     state = {
         violationsDetails: [],
         selectedViolationDetails: null,
-        viewButtonClicked: false
+        viewButtonClicked: false,
+        frameworkComponents: {
+            deleteButtonRenderer: DeleteButtonRenderer
+          }
     }
 
     componentDidMount() {
@@ -28,10 +33,10 @@ class ViolationDetailsAG extends Component {
 
     // componentDidUpdate() {
 
-    //     axios.get('http://localhost:8080/user/vehicleDtls/getall')
+    //     axios.get('http://localhost:8080/parkingViolation/getall')
     //         .then((response) => {
     //             this.setState({
-    //                 vehicleDetails: response.data
+    //                 violationsDetails: response.data
     //             })
     //         });
     // }
@@ -91,7 +96,7 @@ class ViolationDetailsAG extends Component {
             field: 'employeeId',
             sortable: true,
             filter: true,
-            width :150
+            width :130
           },
           {
             headerName: 'Employee Name',
@@ -103,7 +108,8 @@ class ViolationDetailsAG extends Component {
             headerName: 'Date of Offence',
             field: 'dateOfOffence',
             sortable: true,
-            filter: true
+            filter: true,
+            width : 150
           },
           {
             headerName: 'Remarks',
@@ -112,6 +118,12 @@ class ViolationDetailsAG extends Component {
             filter: true,
             width:250,
             resizable: true
+          },
+          {
+            headerName: '',
+            field: 'delete',
+            cellRenderer:"deleteButtonRenderer",
+            width :50
           },
         ];
 
@@ -130,6 +142,7 @@ class ViolationDetailsAG extends Component {
                                rowData={rows}
                                pagination={true}
                                paginationPageSize={10}
+                               frameworkComponents={this.state.frameworkComponents}
                             >
                             </AgGridReact>
                             </div>
