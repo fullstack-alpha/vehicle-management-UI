@@ -32,6 +32,11 @@
 
 .availability{
     display: flex;
+    width: 100%
+}
+
+.avail-grp{
+    display: inline-flex;
 }
 
 .availability-text {
@@ -44,6 +49,14 @@
     border:  1px solid black;
 }
 
+.add-zone {
+    text-align: right
+}
+
+.availability>button{
+    text-align:  center;
+}
+
 .un-available {
     background-color: #036666;
 }
@@ -54,8 +67,8 @@
 
 .parking>li {
     padding: 0px 2px 10px 2px !important;
-    width: 60px !important;
-    max-width: 250px !important;
+    /* width: 60px !important;
+    max-width: 250px !important; */
 }
 
 .parking {

@@ -23,7 +23,6 @@ const ButtonDropdowns = React.lazy(() => import('./views/Buttons/ButtonDropdowns
 const ButtonGroups = React.lazy(() => import('./views/Buttons/ButtonGroups'));
 const Buttons = React.lazy(() => import('./views/Buttons/Buttons'));
 const Charts = React.lazy(() => import('./views/Charts'));
-// const Dashboard = React.lazy(() => import('./views/Dashboard'));
 const CoreUIIcons = React.lazy(() => import('./views/Icons/CoreUIIcons'));
 const Flags = React.lazy(() => import('./views/Icons/Flags'));
 const FontAwesome = React.lazy(() => import('./views/Icons/FontAwesome'));
@@ -42,7 +41,6 @@ const RequestStatus = React.lazy(() => import('./views/Base/RequestStatus'));
 const NewRequest = React.lazy(() => import('./views/Base/NewRequest'));
 const ParkingSlots =React.lazy(() => import('./containers/VehicleParking/ParkingSlots'));
 
-// https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/home', name: 'Home', component: Home },
@@ -86,11 +84,10 @@ const routes = [
   { path: '/users', exact: true,  name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
   { path: '/profile', exact:true, name: 'Profile', component: Profile },
-  { path: '/parking/parkingSlots', exact: true, name: 'Parking Slots', component: ParkingSlots}
+  { path: '/parking/parkingSlots', exact: true, name: 'Parking Slots', component: ParkingSlots},
   { path: '/base/issue-pass', exact: true, name: 'Issue Vehicle Pass', component: IssuePass },
   { path: '/base/newRequest', name: 'New Request', component: NewRequest },
-  { path: '/base/requestStatus', name: 'Request Status', component: RequestStatus },
-
+  { path: '/base/requestStatus', name: 'Request Status', component: RequestStatus }
 ];
 
 export default routes;
