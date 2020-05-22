@@ -26,6 +26,7 @@ class NewRequest extends Component {
     this.toggleFade = this.toggleFade.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.reset = this.reset.bind(this);
 
     this.state = {
       collapse: true,
@@ -90,6 +91,10 @@ class NewRequest extends Component {
     this.setState((prevState) => { return { fadeIn: !prevState }});
   }
 
+  reset() {
+    this.setState({ emailId:"",vehicleNumber:"",vehicleType:"" });
+  }
+
   render() {
 
     let {employeeName, employeeDesignation, employeeId} = this.state;
@@ -101,8 +106,7 @@ class NewRequest extends Component {
             {!this.state.alert ? <Col xs="12" sm="6">
                   <Card>
                     <CardHeader>
-                      <strong>Vehicle Pass</strong>
-                      {!this.state.errorMessage ? <small>Request</small>:
+                      {!this.state.errorMessage ? <strong>Vehicle Pass Request</strong>:
                           <Alert color="danger">
                             Please try again, we are facing some issue.
                           </Alert>}
@@ -147,18 +151,13 @@ class NewRequest extends Component {
                     </CardBody>
                     <CardFooter>
                       <Button type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
-                      <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
+                      <Button type="reset" size="sm" color="danger" onClick={this.reset}><i className="fa fa-ban"></i> Reset</Button>
                     </CardFooter>
                   </Card>
                 </Col>:
                 <Card>
                   <CardBody>
                     <Col xs="12" md="6">
-                      <Card>
-                        <CardHeader>
-                          <i className="fa fa-align-justify"></i><strong>Request</strong>
-                          <small>Success</small>
-                        </CardHeader>
                         <CardBody>
                           <Alert color="success">
                             <h4 className="alert-heading">New Vehicle Pass Request Created!</h4>
@@ -166,12 +165,12 @@ class NewRequest extends Component {
                               Aww yeah, you've successfully raised a request to Admin team for new vehicle pass request. Once the vehicle pass request is accepted by admin team you will recieve notification to your emaild <span style={{color:'red'}}>{this.state.emailId}</span>
                               <hr />
                               <p className="mb-0">
-                                <a href="/base/newRequest" className="alert-link">Raise a another request here..</a>.
+                               {/* <Button className="alert-link" onClick={()=>this.setState({alert:!this.state.alert})}>Raise a another request here</Button>*/}
+                                <a onClick={()=>this.setState({alert:!this.state.alert,emailId:"",vehicleNumber:"",vehicleType:""})} className="btn btn-link">Raise a another request here...</a>
                               </p>
                             </p>
                           </Alert>
                         </CardBody>
-                      </Card>
                     </Col>
                   </CardBody>
                 </Card>}
