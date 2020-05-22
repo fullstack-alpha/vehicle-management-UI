@@ -62,7 +62,7 @@ class ReportViolation extends Component {
           remarks,
         })
         .then((response) =>
-          this.setState({ alert: true, violationId: response.data.violationId })
+          this.setState({ alert: true, violationId: response.data })
         )
         .catch((err) => {
           this.setState({ alert: false, errorMessage: true });
