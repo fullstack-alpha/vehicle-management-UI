@@ -27,8 +27,21 @@ class RequestStatus extends Component {
 
     this.state = {
       passAvailable:false,
-      passInfo:[]
+      passInfo:[],
+        refresh:false
     };
+      this.deleteAction = this.deleteAction.bind(this);
+
+  }
+
+  deleteAction(){
+      console.log("printinggggg"+this.state.refresh)
+      this.setState({refresh:!this.state.refresh})
+      this.setState({
+          refresh: !this.state.refresh,
+      });
+      console.log("printinggggg"+this.state.refresh)
+
   }
 
  componentDidMount() {
@@ -82,7 +95,7 @@ class RequestStatus extends Component {
                               </Badge>:
                               <td>
                                   {status.requestStatus === "Pending" || status.requestStatus === "Rejected" ?
-                                      <PopUpDelete id={status.id}/> :
+                                      <PopUpDelete id={status.id} deleteAction={this.deleteAction}/> :
                                       <PopUpInfo id={status.id} employeeName={status.employeeName}
                                                  employeeId={status.employeeId} vehicleNumber={status.vehicleNumber}
                                                  vehicleType={status.vehicleType} emailId={status.emailId}

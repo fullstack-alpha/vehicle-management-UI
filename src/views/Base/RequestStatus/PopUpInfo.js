@@ -64,10 +64,8 @@ class PopUpInfo extends Component {
                                     </ModalBody>
                                     <ModalFooter>
                                         <Button color="primary" onClick={this.handleClick}>Renew</Button>{' '}
-                                        <Button color="secondary" onClick={(e): void => {
-                                            e.preventDefault();
-                                            window.location.href='/base/requestStatus';
-                                        }}>Cancel</Button>                                    </ModalFooter>
+                                        <Button color="secondary" onClick={this.toggleInfo}>Cancel</Button>
+                                    </ModalFooter>
                                 </Modal>
 
                             </div>

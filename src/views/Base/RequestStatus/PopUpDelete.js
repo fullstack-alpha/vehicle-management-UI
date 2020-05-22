@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Card, CardBody, CardHeader, Col, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
 import axios from 'axios';
 
+
 class PopUpDelete extends Component {
 
   constructor(props) {
@@ -36,11 +37,13 @@ class PopUpDelete extends Component {
 
   handleClick() {
        try {
-            axios.delete(`http://localhost:8080/user/vehicleDtls/delete/${this.props.id}`)
-            .then(this.redirect);
+            axios.delete(`http://localhost:8080/user/vehicleDtls/delete/${this.props.id}`).then(this.toggleDanger)
+            //.then(this.props.deleteAction);
+            .then(this.redirect)
           }catch (err) {
             console.log("Error while deleting vehicle details "+err);
           }
+
    }
 
   render() {
@@ -55,10 +58,7 @@ class PopUpDelete extends Component {
                   </ModalBody>
                   <ModalFooter>
                     <Button color="danger" onClick={this.handleClick}>Delete</Button>{' '}
-                    <Button color="secondary" onClick={(e): void => {
-                                                    e.preventDefault();
-                                                    window.location.href='/base/requestStatus';
-                                                    }}>Cancel</Button>
+                    <Button color="secondary" onClick={this.toggleDanger}>Cancel</Button>
                   </ModalFooter>
                 </Modal>
               </div>
