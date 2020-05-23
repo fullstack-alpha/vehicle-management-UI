@@ -19,7 +19,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import PropType from "prop-types";
-import { LoginUserAction } from "../../../UserManagement/SecurityActions";
+import { LoginUserAction } from "../../../Actions/UserManagement/SecurityActions";
 import Alert from "../../../common/errorAlert";
 
 class Login extends Component {
@@ -42,7 +42,7 @@ constructor(){
 
 componentWillReceiveProps(newProps) {    
   if(newProps.auth.validToken)
-      newProps.history.push("dashboard");
+      newProps.history.push("home");
   else{
     this.setState({
       errorStatus: newProps.error.status, 
@@ -55,7 +55,7 @@ componentWillReceiveProps(newProps) {
 
 componentDidMount(){
   if(this.props.auth.validToken)
-      this.props.history.push("dashboard");
+      this.props.history.push("home");
 }
 
   loginController(e) {

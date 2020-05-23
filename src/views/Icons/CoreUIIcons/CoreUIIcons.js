@@ -166,7 +166,7 @@ class CoreUIIcons extends Component {
               </Col>
               <Col xs="6" sm="4" md="3" xl="2">
                 <i className="cui-dashboard icons font-2xl d-block mt-4"></i>
-                <div>dashboard</div>
+                <div>home</div>
               </Col>
               <Col xs="6" sm="4" md="3" xl="2">
                 <i className="cui-delete icons font-2xl d-block mt-4"></i>
