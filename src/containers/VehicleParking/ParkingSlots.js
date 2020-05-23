@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Button } from 'react-bootstrap';
-import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import { Container, Row } from 'react-bootstrap';
+import { Modal, ModalBody, ModalFooter, ModalHeader, Input, Button, Label, FormGroup, Card, Col, CardBody, CardHeader } from 'reactstrap';
 import data from './parkingSlotList.json';
 import { useSelector, useDispatch } from 'react-redux';
 import { GetAllParkingSlots } from '../../Actions/ParkingSlotAction';
@@ -19,20 +19,26 @@ export default function ParkingSlots() {
     let [zoneId, setZoneId] = useState(null);
     let [carParkingslots, setCarParkingSlotCount] = useState(null);
     let [bikeParkingslots, setBikeParkingSlotCount] = useState(null);
+    let [errorModal, displayErrorModal] = useState(false);
+    let [errorMessage, setErrorMessage] = useState({});
+    let [bookedSlots, setBookedSlots] = useState([]);
 
 
     const dispatch = useDispatch();
     const getParkingSlots = () => dispatch(GetAllParkingSlots());
     useEffect(() => {
+        setBookedSlots([])
         getParkingSlots();
+        Axios.get("http://localhost:8080/user/reserveFeasibility").then(response => {
+            setBookedSlots(response.data)
+        })
     },[reserved]);
 
     let parkingSlots = useSelector(state => state.parkingSlots);
     const auth = useSelector(state => state.auth);
 
     const isAdmin = () => {
-        let admin = auth.user.scopes[0].authority.toLowerCase() === 'admin';
-        return admin;
+        return auth.user.scopes[0].authority.toLowerCase() === 'admin';
     }
 
     const setModalContent = (parkingZone, slot) =>{
@@ -46,6 +52,20 @@ export default function ParkingSlots() {
                 <ModalFooter>
                 <Button color="primary" onClick={() => confirmBooking(parkingZone.zoneID, slot.slotID)}>Confirm</Button>
                 <Button color="secondary" onClick={() => setModalView(!showModal)}>Cancel</Button>
+                </ModalFooter>
+            </Modal>
+        )
+    }
+
+    const errorModalComponent = () =>{
+        return(
+            <Modal isOpen={errorModal} className={'modal-danger '}>
+                <ModalHeader>{errorMessage.messageHeader}</ModalHeader>
+                <ModalBody>
+                    {errorMessage.messageBody}
+                </ModalBody>
+                <ModalFooter>
+                <Button color="danger" onClick={()=>displayErrorModal(!errorModal)}>Close</Button>
                 </ModalFooter>
             </Modal>
         )
@@ -155,6 +175,10 @@ export default function ParkingSlots() {
         )
     }
 
+    const isEmployeeBookedSlot = (zoneId ,slotID) => {
+        return bookedSlots.some(bookedSlot => bookedSlot.slotId === slotID && bookedSlot.zoneId === zoneId);
+    }
+
     const editCurrentZone = () => {
         const totalParkingSlots = [];
         for (let i = 0; i < carParkingslots; i++) {
@@ -230,7 +254,46 @@ export default function ParkingSlots() {
 
     const confirmBooking = (zoneID, slotID) => {
         setModalView(!showModal);
-        Axios.post("http://localhost:8080/user/confirmBooking", {"zoneID":zoneID, "slotID": slotID}).then(reponse => isReserved(!reserved))
+        // Axios.post("http://localhost:8080/user/confirmBooking", {"zoneID":zoneID, "slotID": slotID})
+        // .then(reponse => isReserved(!reserved))
+
+        Axios.get("http://localhost:8080/user/reserveFeasibility").then(response => {
+            if(isAdmin() || (!isAdmin() && response.data.length === 0) || (!isAdmin() && !response.data[0].active)){
+                setBookedSlots(response.data)
+                Axios.post("http://localhost:8080/user/confirmBooking", {"zoneID":zoneID, "slotID": slotID})
+                .then(res => isReserved(!reserved))
+            }else {
+                displayErrorModal(!errorModal);
+                setErrorMessage({"messageHeader": "Unable to complete booking", "messageBody":"You've already booked a slot. Try again tomorrow"})
+            }
+        }).catch(error => {
+            if(isAdmin()){
+                Axios.post("http://localhost:8080/user/confirmBooking", {"zoneID":zoneID, "slotID": slotID})
+                .then(res => isReserved(!reserved))
+            }else {
+                displayErrorModal(!errorModal);
+                setErrorMessage({"messageHeader": "Unable to complete booking", "messageBody":"Server error"})
+            }
+        })
+        
+        // const bookingFeasibility = Axios.get("http://localhost:8080/user/reserveFeasibility")
+        // const reserveSlot = Axios.post("http://localhost:8080/user/confirmBooking", {"zoneID":zoneID, "slotID": slotID})
+
+        // Axios.all([bookingFeasibility, reserveSlot]).then(Axios.spread((...responses) => {
+        //     const feasibilityResponse = responses[0];
+        //     const reserveSlotresponse = responses[1];
+        //     if(null === feasibilityResponse.id){
+        //         isReserved(!reserved)
+        //     }else{
+
+        //     }
+
+
+        //     // use/access the results 
+        //   })).catch(errors => {
+            
+        //   })
+    
     }
 
     const setSlotsIntoView = () => {
@@ -249,7 +312,8 @@ export default function ParkingSlots() {
                                 <ul class="pagination parking">
                                     {
                                     parkingZone.parkingSlots.map(slot => (
-                                        <li onClick={() => bookSlot(parkingZone,slot)} key={parkingZone.zoneID+"-"+slot.slotID} class={slot.booked ? 'booked disabled' : ''}>
+                                        <li onClick={() => bookSlot(parkingZone,slot)} key={parkingZone.zoneID+"-"+slot.slotID} class={slot.booked 
+                                        ? isEmployeeBookedSlot(parkingZone.zoneID,slot.slotID) ? 'booked-my-booking disabled' : 'booked disabled' : ''}>
                                             <button class="page-link">
                                                 <span class="up-down">{slot.slotDisplayName}</span>
                                                 <i class={slot.slotDisplayIcon}></i>
@@ -273,8 +337,9 @@ export default function ParkingSlots() {
             <Row className="header-row">
                 <div class="availability">
                     <Col xs="12" sm="6" className="avail-grp">
-                        <h5 class="availability"><span class="availability-text">Available </span><div class="availability-icon available"></div></h5>
-                        <h5 class="availability"><span class="availability-text">Unavailable</span><div class="availability-icon un-available"></div></h5>
+                        <h5 class="availability-inner"><span class="availability-text">Available </span><div class="availability-icon available"></div></h5>
+                        <h5 class="availability-inner"><span class="availability-text">Unavailable</span><div class="availability-icon un-available"></div></h5>
+                        <h5 class="availability-inner"><span class="availability-text">My Booking</span><div class="availability-icon my-booking"></div></h5>
                     </Col>
                     { isAdmin() ?
                     <Col xs="12" sm="6" className="add-zone">
@@ -290,6 +355,9 @@ export default function ParkingSlots() {
                 }
                 {
                     isAdmin() ? addOrEditSlots() : ''
+                }
+                {
+                    errorModalComponent()
                 }
         </Container>
     )

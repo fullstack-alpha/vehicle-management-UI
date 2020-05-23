@@ -28,10 +28,29 @@
 .availability-icon {
     height: 20px;
     width: 20px;
+    border:  1px solid black;
+}
+
+.booked-my-booking>button{
+    background-color: red;
+    color: white;
+}
+
+.my-booking{
+    background-color: red
 }
 
 .availability{
     display: flex;
+    width: 100%
+}
+
+.availability-inner{
+    display: flex;
+}
+
+.avail-grp{
+    display: inline-flex;
 }
 
 .availability-text {
@@ -41,7 +60,14 @@
 
 .available{
     background-color: #fff;
-    border:  1px solid black;
+}
+
+.add-zone {
+    text-align: right
+}
+
+.availability>button{
+    text-align:  center;
 }
 
 .un-available {
@@ -54,8 +80,8 @@
 
 .parking>li {
     padding: 0px 2px 10px 2px !important;
-    width: 60px !important;
-    max-width: 250px !important;
+    /* width: 60px !important;
+    max-width: 250px !important; */
 }
 
 .parking {

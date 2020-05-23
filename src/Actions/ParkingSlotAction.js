@@ -8,7 +8,7 @@ export const GetAllParkingSlots = () => async dispatch => {
     let response = await fetch(`http://localhost:8080/common/parkingSlots`,{
       headers: {
         authorization: `Bearer ${localStorage.getItem("token")}`
-      }});
+      }})
     const json = await response.json();
     dispatch({
       type: "SET_ALL_PARKING_SLOTS",
