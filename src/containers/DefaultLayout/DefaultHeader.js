@@ -67,7 +67,7 @@ class DefaultHeader extends Component {
           <NavItem className="px-3">
             <NavLink to="/home" className="nav-link" >Home</NavLink>
           </NavItem>
-          
+
         </Nav>
         <Nav className="ml-auto" navbar>
           {/* <NavItem className="d-md-down-none">

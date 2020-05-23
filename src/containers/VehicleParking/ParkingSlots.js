@@ -275,7 +275,7 @@ export default function ParkingSlots() {
                 setErrorMessage({"messageHeader": "Unable to complete booking", "messageBody":"Server error"})
             }
         })
-        
+
         // const bookingFeasibility = Axios.get("http://localhost:8080/user/reserveFeasibility")
         // const reserveSlot = Axios.post("http://localhost:8080/user/confirmBooking", {"zoneID":zoneID, "slotID": slotID})
 
@@ -289,11 +289,11 @@ export default function ParkingSlots() {
         //     }
 
 
-        //     // use/access the results 
+        //     // use/access the results
         //   })).catch(errors => {
-            
+
         //   })
-    
+
     }
 
     const setSlotsIntoView = () => {
@@ -312,7 +312,7 @@ export default function ParkingSlots() {
                                 <ul class="pagination parking">
                                     {
                                     parkingZone.parkingSlots.map(slot => (
-                                        <li onClick={() => bookSlot(parkingZone,slot)} key={parkingZone.zoneID+"-"+slot.slotID} class={slot.booked 
+                                        <li onClick={() => bookSlot(parkingZone,slot)} key={parkingZone.zoneID+"-"+slot.slotID} class={slot.booked
                                         ? isEmployeeBookedSlot(parkingZone.zoneID,slot.slotID) ? 'booked-my-booking disabled' : 'booked disabled' : ''}>
                                             <button class="page-link">
                                                 <span class="up-down">{slot.slotDisplayName}</span>
