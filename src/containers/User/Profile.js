@@ -10,7 +10,8 @@ class Profile extends Component {
         this.state = {
             empName: "",
             empDesignation: "",
-            empId: ""
+            empId: "",
+            jobLevel: ""
           }
     }
 
@@ -20,7 +21,8 @@ class Profile extends Component {
         this.setState({
             empName: this.props.employeeDetails.employee.employeeName,
             empDesignation: this.props.employeeDetails.employee.designation,
-            empId: this.props.employeeDetails.employee.employeeId
+            empId: this.props.employeeDetails.employee.employeeId,
+            jobLevel: this.props.employeeDetails.employee.jobLevel
         })
     }
 
@@ -30,7 +32,8 @@ class Profile extends Component {
         this.setState({
             empName: newProp.employeeDetails.employee.employeeName,
             empDesignation: newProp.employeeDetails.employee.designation,
-            empId: newProp.employeeDetails.employee.employeeId
+            empId: newProp.employeeDetails.employee.employeeId,
+            jobLevel: newProp.employeeDetails.employee.jobLevel
         })
     }
 
@@ -40,7 +43,7 @@ class Profile extends Component {
             height: '100px'
           };
 
-          let {empName, empDesignation, empId} = this.state;
+          let {empName, empDesignation, empId, jobLevel} = this.state;
 
           if(!empName){
               return '<span>Loading ...</span>'
@@ -61,7 +64,7 @@ class Profile extends Component {
                                 <br></br>
                                 <Row>
                                     <Col sm={2}><b>Job Level:</b></Col>
-                                    <Col sm={4}>Level 4</Col>
+                                    <Col sm={4}>{jobLevel}</Col>
                                     <Col sm={2}><b>Employee ID:</b></Col>
                                     <Col sm={4}>{empId}</Col>
                                 </Row>
