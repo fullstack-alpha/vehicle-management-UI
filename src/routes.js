@@ -116,6 +116,7 @@ const routes = [
       exact: true,
       name: "Report Violation Details",
       component: ReportViolation,
+    }
 
 ];
 
