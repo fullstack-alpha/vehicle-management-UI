@@ -6,7 +6,7 @@
   overflow: auto; /* Enable scroll if needed */
   color: black;
   margin-left: 20%;
-  margin-top: 20%;
+  margin-top: 10%;
   transition: all .3s ease-out;
   box-sizing: border-box;
   background-color: white;
