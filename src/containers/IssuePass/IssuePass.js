@@ -32,6 +32,14 @@ class IssuePass extends Component {
             });
     }
 
+    makeDisabledIfClicked= (status) =>{
+        if(status =='Approved' || status =='Rejected'){
+            return true;
+        }else{
+           return false;
+        }
+    }
+
     // componentDidUpdate(prevState,nextState) {
 
     //     if (prevState.isUpdatedRequestCalled!==nextState.isUpdatedRequestCalled) { }
@@ -110,7 +118,7 @@ class IssuePass extends Component {
                         <td>{vehicle.vehicleNumber}</td>
                         <td>{vehicle.vehicleType}</td>
                         <td>{vehicle.requestStatus}</td>
-                        <td><button onClick={this.clickViewDetails} id={vehicle.id} className='btn btn-primary'>View Details</button></td>
+                        <td><button onClick={this.clickViewDetails} id={vehicle.id} className='btn btn-primary' disabled={this.makeDisabledIfClicked(vehicle.requestStatus)?true:false}>Approve/Reject</button></td>
                     </tr>);
             })
         }
