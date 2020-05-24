@@ -4,7 +4,7 @@ let navButton = {
   items: [
     {
       name: 'Home',
-      url: '/dashboard',
+      url: '/home',
       icon: 'fa fa-home',
       user: 'common'
     },
@@ -16,13 +16,13 @@ let navButton = {
       children: [
         {
           name: 'New Request',
-          url: '/base/cards',
+          url: '/base/newRequest',
           icon: 'fa fa-file',
           user: 'user',
         },
         {
           name: 'Request Status',
-          url: '/base/dropdowns',
+          url: '/base/requestStatus',
           icon: 'fa fa-clock-o',
           user: 'user',
         },
@@ -72,13 +72,13 @@ let navButton = {
       children: [
         {
           name: 'Available Slots',
-          url: '/base/breadcrumbs',
+          url: '/parking/parkingSlots',
           icon: 'fa fa-road',
           user: 'user',
         },
         {
           name: 'Parking Slots',
-          url: '/base/cards',
+          url: '/parking/parkingSlots',
           icon: 'fa fa-motorcycle',
           user: 'admin',
         },
@@ -333,8 +333,6 @@ let navButton = {
 //     newmap.children = newmap.children.filter(elem=>elem.user !== '');
 //   return newmap
 // });
-
-
 
 // console.log(filterContent)
 // let filterContent = navButton.items;

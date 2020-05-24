@@ -1,0 +1,6 @@
+{
+  "name": "ReportViolation",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ReportViolation.js"
+}

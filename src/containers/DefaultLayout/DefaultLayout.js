@@ -5,7 +5,7 @@ import { Container } from "reactstrap";
 import SecureRoute from "../../security/SecureRoutes";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-
+import GetEmployeeDetails from "../../Actions/UserManagement/EmployeeAction";
 import {
   AppAside,
   AppFooter,
@@ -28,14 +28,19 @@ const DefaultFooter = React.lazy(() => import("./DefaultFooter"));
 const DefaultHeader = React.lazy(() => import("./DefaultHeader"));
 
 class DefaultLayout extends Component {
+
+  constructor(){
+    super();
+  }
+
+
   loading = () => (
     <div className="animated fadeIn pt-1 text-center">Loading...</div>
   );
 
-  // signOut(e) {
-  //   e.preventDefault();
-  //   this.props.history.push("/login");
-  // }
+  componentWillMount() {
+    this.props.GetEmployeeDetails();
+  };
 
   render() {
     let filterdList=[];
@@ -108,13 +113,15 @@ class DefaultLayout extends Component {
 }
 
 DefaultLayout.propTypes = {
+  GetEmployeeDetails: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps= state => (
   {
-    auth:state.auth
+    auth:state.auth,
+    employeeDetails: state.employeeDetails
   }
 )
 
-export default connect(mapStateToProps)(DefaultLayout);
+export default connect(mapStateToProps, {GetEmployeeDetails})(DefaultLayout);
