@@ -19,7 +19,7 @@ export default class DeleteButtonRenderer extends Component {
   }
     render() {
         return (
-            <span><button className="btn btn-info" style={{ height: 20, lineHeight: 0.5 }} onClick={() => {if (window.confirm('Are you sure you wish to delete this item?'))  this.buttonClick(this.props.node)}}>X</button></span>
+            <span><button className="btn btn-info" style={{ height: 20, lineHeight: 0.5 }} onClick={() => {this.buttonClick(this.props.node)}}>X</button></span>
         );
     }
 }

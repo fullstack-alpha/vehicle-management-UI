@@ -82,6 +82,7 @@ class ViolationDetailsAG extends Component {
             field: 'violationId',
             sortable: true,
             filter: true,
+            hide :true,
             width :80
           },
           {
