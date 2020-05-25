@@ -156,28 +156,28 @@ class ReportViolation extends Component {
               </Card>
             </Col>
           ) : (
-            <Card>
-              <CardBody>
-                <Col xs="12" md="12">
-                  <Alert color="success">
-                    <h4 className="alert-heading">
-                      Parking Violation Created Successfully!
+              <Card>
+                <CardBody>
+                  <Col xs="12" md="12">
+                    <CardBody>
+                      <Alert color="success">
+                        <h4 className="alert-heading">
+                          Parking Violation Created Successfully!
                     </h4>
-                    <p>
-                      Ticket No.{this.state.violationId}
-                      <hr />
-                      <p className="mb-0">
-                        <a href="/base/reportviolation" className="alert-link">
-                          Raise a another request here..
-                        </a>
-                        .
-                      </p>
-                    </p>
-                  </Alert>
-                </Col>
-              </CardBody>
-            </Card>
-          )}
+                        <p>
+                          Ticket No.{this.state.violationId}
+                          <hr />
+                          <p className="mb-0">
+                            {/* <Button className="alert-link" onClick={()=>this.setState({alert:!this.state.alert})}>Raise a another request here</Button>*/}
+                            <a onClick={() => this.setState({ alert: !this.state.alert, employeeName: "", vehicleNo: "", employeeId: "", dateOfOffence: "", remarks: "" })} className="btn btn-link">Raise a another request here...</a>
+                          </p>
+                        </p>
+                      </Alert>
+                    </CardBody>
+                  </Col>
+                </CardBody>
+              </Card>
+            )}
         </div>
       </form>
     );
