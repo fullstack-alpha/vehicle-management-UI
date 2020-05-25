@@ -30,7 +30,7 @@ class ReportViolation extends Component {
       employeeName: "",
       employeeId: "",
       dateOfOffence: "",
-      vehicleNumber: "",
+      vehicleNo: "",
       remarks: "",
       errorMessage: false,
       alert: false,
@@ -49,16 +49,16 @@ class ReportViolation extends Component {
       employeeName,
       employeeId,
       dateOfOffence,
-      vehicleNumber,
+      vehicleNo,
       remarks,
     } = this.state;
     try {
       axios
-        .post("http://localhost:8080/admin/parkingViolation/create", {
+        .post("http://localhost:8080/parkingViolation/create", {
           employeeName,
           employeeId,
           dateOfOffence,
-          vehicleNumber,
+          vehicleNo,
           remarks,
         })
         .then((response) =>
@@ -115,13 +115,13 @@ class ReportViolation extends Component {
                     />
                   </FormGroup>
                   <FormGroup>
-                    <Label htmlFor="vehicleNumber"> Vehicle Number</Label>
+                    <Label htmlFor="vehicleNo"> Vehicle Number</Label>
                     <Input
                       type="text"
-                      id="vehicleNumber"
+                      id="vehicleNo"
                       required="required"
-                      name="vehicleNumber"
-                      value={this.state.vehicleNumber}
+                      name="vehicleNo"
+                      value={this.state.vehicleNo}
                       onChange={this.handleChange}
                     />
                   </FormGroup>
