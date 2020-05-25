@@ -87,17 +87,10 @@ class ReportViolation extends Component {
       <form onSubmit={this.handleSubmit}>
         <div className="animated fadeIn">
           {!this.state.alert ? (
-            <Col xs="12" sm="6">
+            <Col xs="12" sm="12">
               <Card>
                 <CardHeader>
                   <strong>Report Violation</strong>
-                  {!this.state.errorMessage ? (
-                    <small>Request</small>
-                  ) : (
-                    <Alert color="danger">
-                      Please try again, we are facing some issue.
-                    </Alert>
-                  )}
                 </CardHeader>
                 <CardBody>
                   <FormGroup>
@@ -159,43 +152,28 @@ class ReportViolation extends Component {
                   <Button type="submit" size="sm" color="primary">
                     <i className="fa fa-dot-circle-o"></i> Submit
                   </Button>
-                  <Button type="reset" size="sm" color="danger">
-                    <i className="fa fa-ban"></i> Reset
-                  </Button>
                 </CardFooter>
               </Card>
             </Col>
           ) : (
             <Card>
               <CardBody>
-                <Col xs="12" md="6">
-                  <Card>
-                    <CardHeader>
-                      <i className="fa fa-align-justify"></i>
-                      <strong>Request</strong>
-                      <small>Success</small>
-                    </CardHeader>
-                    <CardBody>
-                      <Alert color="success">
-                        <h4 className="alert-heading">
-                          Parking Violation Created Successfully!
-                        </h4>
-                        <p>
-                          Ticket No.{this.state.violationId}
-                          <hr />
-                          <p className="mb-0">
-                            <a
-                              href="/base/reportviolation"
-                              className="alert-link"
-                            >
-                              Raise a another request here..
-                            </a>
-                            .
-                          </p>
-                        </p>
-                      </Alert>
-                    </CardBody>
-                  </Card>
+                <Col xs="12" md="12">
+                  <Alert color="success">
+                    <h4 className="alert-heading">
+                      Parking Violation Created Successfully!
+                    </h4>
+                    <p>
+                      Ticket No.{this.state.violationId}
+                      <hr />
+                      <p className="mb-0">
+                        <a href="/base/reportviolation" className="alert-link">
+                          Raise a another request here..
+                        </a>
+                        .
+                      </p>
+                    </p>
+                  </Alert>
                 </Col>
               </CardBody>
             </Card>
