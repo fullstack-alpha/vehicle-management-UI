@@ -276,24 +276,6 @@ export default function ParkingSlots() {
             }
         })
 
-        // const bookingFeasibility = Axios.get("http://localhost:8080/user/reserveFeasibility")
-        // const reserveSlot = Axios.post("http://localhost:8080/user/confirmBooking", {"zoneID":zoneID, "slotID": slotID})
-
-        // Axios.all([bookingFeasibility, reserveSlot]).then(Axios.spread((...responses) => {
-        //     const feasibilityResponse = responses[0];
-        //     const reserveSlotresponse = responses[1];
-        //     if(null === feasibilityResponse.id){
-        //         isReserved(!reserved)
-        //     }else{
-
-        //     }
-
-
-        //     // use/access the results
-        //   })).catch(errors => {
-
-        //   })
-
     }
 
     const setSlotsIntoView = () => {
@@ -337,9 +319,9 @@ export default function ParkingSlots() {
             <Row className="header-row">
                 <div class="availability">
                     <Col xs="12" sm="6" className="avail-grp">
-                        <h5 class="availability-inner"><span class="availability-text">Available </span><div class="availability-icon available"></div></h5>
-                        <h5 class="availability-inner"><span class="availability-text">Unavailable</span><div class="availability-icon un-available"></div></h5>
-                        <h5 class="availability-inner"><span class="availability-text">My Booking</span><div class="availability-icon my-booking"></div></h5>
+                        <h5 class="availability-inner"><div class="availability-icon available"></div><span class="availability-text">Available </span></h5>
+                        <h5 class="availability-inner"><div class="availability-icon un-available"></div><span class="availability-text">Unavailable</span></h5>
+                        <h5 class="availability-inner"><div class="availability-icon my-booking"></div><span class="availability-text">My Booking</span></h5>
                     </Col>
                     { isAdmin() ?
                     <Col xs="12" sm="6" className="add-zone">

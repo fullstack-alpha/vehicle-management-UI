@@ -87,7 +87,7 @@ class ParkingViolation extends Component {
                     <Col>
                         <Card>
                             <CardHeader>
-                                <i className="fa fa-align-justify"></i> Violation Details
+                                Violation Details
                             </CardHeader>
                             <CardBody>
 
