@@ -47,19 +47,19 @@ let navButton = {
       children: [
         {
           name: 'View',
-          url: '/base/breadcrumbs',
+          url: '/base/ParkingViolation',
           icon: 'fa fa-television',
           user: 'user',
         },
         {
           name: 'View',
-          url: '/base/cards',
+          url: '/base/view-violationdetails',
           icon: 'fa fa-television',
           user: 'admin',
         },
         {
           name: 'Report Violation',
-          url: '/base/dropdowns',
+          url: '/base/reportviolation',
           icon: 'fa fa-pencil',
           user: 'admin',
         },

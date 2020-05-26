@@ -69,11 +69,8 @@ class ParkingViolation extends Component {
                 return (
                     <tr key={violation.violationId}>
                         <td>{violation.vehicleNo}</td>
-                        <td>{violation.employeeId}</td>
-                        <td>{violation.employeeName}</td>
                         <td>{violation.dateOfOffence}</td>
                         <td>{violation.remarks}</td>
-                        <td><button onClick={this.clickViewDetails} id={violation.violationId} className='btn btn-primary'>View Details</button></td>
                     </tr>);
             })
         }
@@ -98,37 +95,14 @@ class ParkingViolation extends Component {
                                     <thead>
                                         <tr>
                                             <th>Vehicle No</th>
-                                            <th>Employee Id</th>
-                                            <th>Employee Name</th>
                                             <th>Date of Offence</th>
                                             <th>Remarks</th>
-                                            <th>View Details</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {rows}
                                     </tbody>
                                 </Table>
-                                <Pagination>
-                                    <PaginationItem>
-                                        <PaginationLink previous tag="button"></PaginationLink>
-                                    </PaginationItem>
-                                    <PaginationItem active>
-                                        <PaginationLink tag="button">1</PaginationLink>
-                                    </PaginationItem>
-                                    <PaginationItem>
-                                        <PaginationLink tag="button">2</PaginationLink>
-                                    </PaginationItem>
-                                    <PaginationItem>
-                                        <PaginationLink tag="button">3</PaginationLink>
-                                    </PaginationItem>
-                                    <PaginationItem>
-                                        <PaginationLink tag="button">4</PaginationLink>
-                                    </PaginationItem>
-                                    <PaginationItem>
-                                        <PaginationLink next tag="button"></PaginationLink>
-                                    </PaginationItem>
-                                </Pagination>
                             </CardBody>
                         </Card>
                     </Col>
