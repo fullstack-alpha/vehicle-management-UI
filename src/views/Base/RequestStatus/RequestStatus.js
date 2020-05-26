@@ -66,7 +66,7 @@ class RequestStatus extends Component {
           <Col>
             <Card>
               <CardHeader>
-                <i className="fa fa-align-justify"></i> Pass Status
+                Pass Status
               </CardHeader>
               <CardBody>
                 {this.state.passInfo.length>0 ?

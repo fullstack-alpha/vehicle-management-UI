@@ -134,7 +134,7 @@ class ViolationDetailsAG extends Component {
                     <Col>
                         <Card>
                             <CardHeader>
-                                <i className="fa fa-align-justify"></i> Violation Details
+                                Violation Details
                             </CardHeader>
                             <CardBody>
                             <div style={{ height: '400px', width: '1070px' }} className="ag-theme-alpine">

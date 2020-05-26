@@ -99,11 +99,15 @@ class NewRequest extends Component {
 
     let {employeeName, employeeDesignation, employeeId} = this.state;
 
+    if(!employeeName && !employeeId){
+      return '<span>Loading ...</span>'
+  }
+
     return (
 
         <form onSubmit={this.handleSubmit}>
           <div className="animated fadeIn">
-            {!this.state.alert ? <Col xs="12" sm="6">
+            {!this.state.alert ? <Col xs="12" sm="12">
                   <Card>
                     <CardHeader>
                       {!this.state.errorMessage ? <strong>Vehicle Pass Request</strong>:
@@ -114,15 +118,15 @@ class NewRequest extends Component {
                     <CardBody>
                       <FormGroup>
                         <Label htmlFor="employeeName">Emp Name</Label>
-                        <Input type="text"  readOnly="readOnly" name="employeeName" value={this.state.employeeName} onChange={this.handleChange}/>
+                        <Input type="text"  readOnly="readOnly" name="employeeName" value={employeeName} onChange={this.handleChange}/>
                       </FormGroup>
                       <FormGroup>
                         <Label htmlFor="employeeID">Emp ID</Label>
-                        <Input type="text" readOnly="readOnly" id="employeeID" name="employeeId" value={this.state.employeeId} onChange={this.handleChange}/>
+                        <Input type="text" readOnly="readOnly" id="employeeID" name="employeeId" value={employeeId} onChange={this.handleChange}/>
                       </FormGroup>
                       <FormGroup>
                         <Label htmlFor="designation">Designation</Label>
-                        <Input type="text" id="designation" readOnly="readOnly" name="employeeDesignation" value={this.state.employeeDesignation} onChange={this.handleChange}/>
+                        <Input type="text" id="designation" readOnly="readOnly" name="employeeDesignation" value={employeeDesignation} onChange={this.handleChange}/>
                       </FormGroup>
                       <FormGroup>
                         <Label htmlFor="email-input">Email ID</Label>
@@ -130,7 +134,7 @@ class NewRequest extends Component {
                         <FormText className="help-block">Please enter your email</FormText>
                       </FormGroup>
                       <FormGroup row className="my-0">
-                        <Col xs="8">
+                        <Col xs="3">
                           <FormGroup>
                             <Label htmlFor="vehicleType">Vehicle Type</Label>
                             <Input type="select" required name="vehicleType" id="vehicleType" value={this.state.vehicleType} onChange={this.handleChange}>
@@ -141,7 +145,7 @@ class NewRequest extends Component {
                             </Input>
                           </FormGroup>
                         </Col>
-                        <Col xs="4">
+                        <Col xs="3">
                           <FormGroup>
                             <Label htmlFor="vehicleNumber">Vehicle Number</Label>
                             <Input type="text" required="required" name="vehicleNumber" id="vehicleNumber" placeholder="VehicleNumber" value={this.state.vehicleNumber} onChange={this.handleChange}/>

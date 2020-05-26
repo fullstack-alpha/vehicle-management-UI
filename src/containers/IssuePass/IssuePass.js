@@ -159,7 +159,7 @@ class IssuePass extends Component {
                     <Col>
                         <Card>
                             <CardHeader>
-                                <i className="fa fa-align-justify"></i> Issue Vehicle Pass
+                                Issue Vehicle Pass
                             </CardHeader>
                             <CardBody>
 
