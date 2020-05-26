@@ -17,6 +17,7 @@ class IssuePass extends Component {
     }
 
     componentDidMount() {
+        console.log('componentDidMount'+this.state.viewButtonClicked)
         this.callGetEndpoint(this.state.page, this.size)
     }
 
@@ -61,14 +62,17 @@ class IssuePass extends Component {
         var id = this.state.selectedVehicleDetails.id;
         let url = 'http://localhost:8080/admin/vehicleDtls/update/'.concat(id);
 
-
+    
         axios.put(url, VehicleDtls)
             .then((response) => {
+                console.log('before viewButtonClicked'+this.state.viewButtonClicked);
                 this.setState({
-                    viewButtonClicked: false,
+                    viewButtonClicked: !this.state.viewButtonClicked,
                     // isUpdatedRequestCalled:true
                 })
+                this.callGetEndpoint(this.state.page,5);
             });
+            
 
 
 
